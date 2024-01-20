@@ -84,6 +84,11 @@ body {
     align-items: center;
     justify-content: center; 
 }
+.bolas-selecionadas {
+    background-color: #4CAF50; 
+    color: white; 
+}
+
 .button {
     width: 100px;
     height: 80px; 
@@ -142,6 +147,11 @@ body {
 }
 #bclear {
     background-color: #dc3545;
+    cursor: pointer;
+}
+#salvarBtn {
+    background-color: #14ed3f;
+    cursor: pointer;
 }
 #statusMessage {
     width: 100%;

@@ -8,14 +8,16 @@ export default class ListaFacil {
     }
 
     init() {
-        this.bindEvents();
-        this.updateDisplay();
+        this.atualizaEstiloCabecalho();
     }
 
-    bindEvents() {
-        
+    atualizaEstiloCabecalho() {
+        const cabecalho = document.querySelector('.app-header');
+        if (cabecalho) {
+            cabecalho.style.background = 'linear-gradient(to bottom, rgb(0 0 0), #c44bbc, rgb(194 71 187))'; 
+            cabecalho.style.boxShadow = '0 36px 36px 56px rgb(199 86 194)'; 
+        }
     }
-
 
     Listar() {
         this.buscalocal = new LocalStorageJS(this.displayValue);
@@ -36,16 +38,13 @@ export default class ListaFacil {
         containerDiv.appendChild(statusMessageDiv);
 
         const tecladoDiv = document.createElement('div');
-        console.log(this.lista)
         this.lista.forEach((text, index) => {
-            console.log(index+1)
             const list = document.createElement('p');
             list.id = index+1;
             list.textContent = `Nº ${index+1} : ${text}`;
             tecladoDiv.appendChild(list);
 
         });
-        
         
         containerDiv.appendChild(tecladoDiv);
         mainDiv.appendChild(containerDiv);

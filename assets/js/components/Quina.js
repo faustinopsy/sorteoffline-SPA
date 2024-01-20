@@ -8,6 +8,7 @@ export default class QuinaScreen {
       ];
       this.userLanguage = lang; 
       this.loadLanguage();
+      this.init();
   }
   loadLanguage() {
       this.userLanguage = this.userLanguage.split('-')[0];
@@ -22,7 +23,15 @@ export default class QuinaScreen {
   }
 
   init() {
-      
+    this.atualizaEstiloCabecalho();
+  }
+
+  atualizaEstiloCabecalho() {
+      const cabecalho = document.querySelector('.app-header');
+      if (cabecalho) {
+          cabecalho.style.background = 'linear-gradient(rgb(0, 0, 0), rgb(63 98 230), rgb(47 118 200))'; 
+          cabecalho.style.boxShadow = 'rgb(47 118 200) 0px 36px 36px 56px'; 
+      }
   }
   render() {
       document.getElementById('titulo').innerHTML='Quina';

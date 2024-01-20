@@ -8,8 +8,16 @@ export default class CadFacil {
     init() {
         this.bindEvents();
         this.updateDisplay();
+        this.atualizaEstiloCabecalho();
     }
 
+    atualizaEstiloCabecalho() {
+        const cabecalho = document.querySelector('.app-header');
+        if (cabecalho) {
+            cabecalho.style.background = 'linear-gradient(to bottom, rgb(0 0 0), #c44bbc, rgb(194 71 187))'; 
+            cabecalho.style.boxShadow = '0 36px 36px 56px rgb(199 86 194)'; 
+        }
+    }
     bindEvents() {
         document.getElementById('bclear').addEventListener('click', () => this.clearDisplay());
         document.querySelectorAll('.bolas').forEach(button => {
@@ -18,36 +26,88 @@ export default class CadFacil {
             }
         });
         document.getElementById('salvarBtn').addEventListener('click', () => this.salvar());
-        //document.getElementById('modalCloseBtn').addEventListener('click', () => this.closeModal());
     }
 
     pressButton(num) {
-        if (this.displayValue === '0') {
-            this.displayValue = num;
+        let numerosSelecionados = this.displayValue === '0' ? [] : this.displayValue.split(',');
+        const index = numerosSelecionados.indexOf(num);
+        if (index > -1) {
+            numerosSelecionados.splice(index, 1);
+            document.getElementById(`btn-${num}`).classList.remove('bolas-selecionadas');
         } else {
-            this.displayValue += ','+ num;
+            if (numerosSelecionados.length < 15) {
+                numerosSelecionados.push(num);
+                document.getElementById(`btn-${num}`).classList.add('bolas-selecionadas');
+            }
         }
+    
+        this.displayValue = numerosSelecionados.join(',');
         this.updateDisplay();
     }
-
+    
     updateDisplay() {
-        document.getElementById('display').innerText = this.displayValue;
+        const salvarBtn = document.getElementById('salvarBtn');
+        const numerosSelecionados = this.displayValue.split(',');
+        salvarBtn.disabled = numerosSelecionados.length !== 15 || this.displayValue === '0';
+        const numerosOrdenados = this.displayValue.split(',')
+            .map(num => parseInt(num, 10)) 
+            .sort((a, b) => a - b); 
+    
+        let displayTexto = '';
+        numerosOrdenados.forEach((num, index) => {
+            displayTexto += num < 10 ? '0' + num : num; 
+            if ((index + 1) % 5 === 0 && index < numerosOrdenados.length - 1) {
+                displayTexto += '\n'; 
+            } else if (index < numerosOrdenados.length - 1) {
+                displayTexto += ',';
+            }
+        });
+    
+        document.getElementById('display').innerText = displayTexto;
     }
-
+    
     clearDisplay() {
         this.displayValue = '0';
+        
+        document.querySelectorAll('.bolas').forEach(button => {
+            button.classList.remove('bolas-selecionadas');
+        });
         this.updateDisplay();
-        this.buscalocal = new LocalStorageJS(this.displayValue)
-        console.log(this.buscalocal.ListaLotofacil())
     }
+    
 
     salvar() {
-        this.buscalocal = new LocalStorageJS(this.displayValue)
+        const numerosOrdenados = this.displayValue.split(',')
+            .map(num => parseInt(num, 10))
+            .sort((a, b) => a - b);
+    
+        const numerosOrdenadosString = numerosOrdenados.map(num => num < 10 ? '0' + num : num).join(',');
+        this.buscalocal = new LocalStorageJS(numerosOrdenadosString);
         this.buscalocal.salvarLotofacil();
+    
         this.displayValue = '0';
+        this.exibeModal();
         this.updateDisplay();
     }
-
+    exibeModal(){
+        Swal.fire({
+            title: "Salvo com sucesso!.",
+            showClass: {
+              popup: `
+                animate__animated
+                animate__fadeInUp
+                animate__faster
+              `
+            },
+            hideClass: {
+              popup: `
+                animate__animated
+                animate__fadeOutDown
+                animate__faster
+              `
+            }
+          });
+    }
     
     render() {
         const mainDiv = document.createElement('div');
@@ -79,7 +139,7 @@ export default class CadFacil {
             const button = document.createElement('button');
             button.className = 'bolas';
             button.textContent = text;
-            
+            button.id = `btn-${text}`;
             tecladoDiv.appendChild(button);
 
             if ((index + 1) % 25 === 0) {
@@ -94,7 +154,10 @@ export default class CadFacil {
         buttonc.textContent = text;
         
         if (text === '🗑️') buttonc.id = 'bclear';
-        if (text === '💾') buttonc.id = 'salvarBtn';
+        if (text === '💾') {
+            buttonc.id = 'salvarBtn';
+            buttonc.disabled = true;
+        }
         containerDiv.appendChild(buttonc);
         });
         

@@ -8,6 +8,7 @@ export default class LotoFacilScreen {
         ];
         this.userLanguage = lang; 
         this.loadLanguage();
+        this.init();
     }
     loadLanguage() {
         this.userLanguage = this.userLanguage.split('-')[0];
@@ -22,7 +23,15 @@ export default class LotoFacilScreen {
     }
 
     init() {
-        
+        this.atualizaEstiloCabecalho();
+    }
+
+    atualizaEstiloCabecalho() {
+        const cabecalho = document.querySelector('.app-header');
+        if (cabecalho) {
+            cabecalho.style.background = 'linear-gradient(to bottom, rgb(0 0 0), #c44bbc, rgb(194 71 187))'; 
+            cabecalho.style.boxShadow = '0 36px 36px 56px rgb(199 86 194)'; 
+        }
     }
     render() {
         document.getElementById('titulo').innerHTML='Lotofácil';

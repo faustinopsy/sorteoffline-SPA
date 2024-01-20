@@ -12,6 +12,15 @@ export default class ConfereFacil {
 
     init() {
         this.attachEventListeners();
+        this.atualizaEstiloCabecalho();
+    }
+    
+    atualizaEstiloCabecalho() {
+        const cabecalho = document.querySelector('.app-header');
+        if (cabecalho) {
+            cabecalho.style.background = 'linear-gradient(to bottom, rgb(0 0 0), #c44bbc, rgb(194 71 187))'; 
+            cabecalho.style.boxShadow = '0 36px 36px 56px rgb(199 86 194)'; 
+        }
     }
 
     bindEvents() {
@@ -21,21 +30,32 @@ export default class ConfereFacil {
         this.buscarButton.addEventListener('click', () => this.Listar());
         
     }
-
+    comparaNumeros(meusnumeros, numerosSorteados) {
+        const numerosAcertados = meusnumeros.filter(numero => numerosSorteados.includes(numero));
+        return numerosAcertados.length; 
+    }
     async Listar() {
         let numero = this.assetInput.value;
         this.busca = new BuscaApi(numero,'lotofacil');
         this.lista = await this.busca.buscaResultadosAPI();
-        console.log(this.lista)
+        const numerosSorteados = this.lista.listaDezenas.map(Number);
 
         this.buscalocal = new LocalStorageJS(this.displayValue)
         this.meusnumeros = this.buscalocal.ListaLotofacil()
         console.log(this.buscalocal.ListaLotofacil())
 
         const divnova = document.querySelector('.main');
-        divnova.innerHTML +=  `${this.lista.dataApuracao}
-         <br> ${this.lista.listaDezenas} 
-         <br> ${this.meusnumeros}`
+        divnova.innerHTML +=  `Data: ${this.lista.dataApuracao}
+                            <br> Sorteio: ${this.lista.listaDezenas}`
+         this.meusnumeros.forEach((numeros, index) => {
+            const meustaloes = numeros.split(',').map(Number);
+            const acertos = this.comparaNumeros(meustaloes, numerosSorteados);
+
+            const list = document.createElement('p');
+            list.id = index+1;
+            divnova.innerHTML += `<br>Talão ${index+1}: ${numeros} - Acertos: ${acertos}`;
+
+        });
     }
 
     
@@ -68,8 +88,6 @@ export default class ConfereFacil {
         this.buscarButton.textContent = 'Buscar';
         actionsDiv.appendChild(this.buscarButton);
     
-        
-        
         tecladoDiv.appendChild(actionsDiv);
         containerDiv.appendChild(tecladoDiv);
         mainDiv.appendChild(containerDiv);

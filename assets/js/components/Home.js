@@ -9,6 +9,7 @@ export default class MenuGenerator {
         ];
         this.userLanguage = lang; 
         this.loadLanguage();
+        this.init();
     }
     loadLanguage() {
         this.userLanguage = this.userLanguage.split('-')[0];
@@ -21,7 +22,19 @@ export default class MenuGenerator {
                 });
             });
     }
+    init() {
+        this.atualizaEstiloCabecalho();
+    }
+
+    atualizaEstiloCabecalho() {
+        const cabecalho = document.querySelector('.app-header');
+        if (cabecalho) {
+            cabecalho.style.background = 'linear-gradient(rgb(0, 0, 0), rgb(68, 131, 88), rgb(94, 194, 127))'; 
+            cabecalho.style.boxShadow = 'rgb(82 195 119) 0px 36px 36px 56px'; 
+        }
+    }
     render() {
+        document.getElementById('titulo').innerHTML='Boa Sorte!';
         const menuContainer = document.createElement('div');
         menuContainer.className = 'main';
         menuContainer.classList.add = 'container';
