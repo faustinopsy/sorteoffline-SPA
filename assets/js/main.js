@@ -1,7 +1,8 @@
 import Navbar from './components/Navbar.js';
 import MenuGenerator from './components/Home.js';
 import LotomaniaScreen from './components/Lotomania.js';
-import LotofacilScreen from './components/Lotofacil.js';
+import LotoFacilScreen from './components/LotoFacil.js';
+import CadFacil from './components/CadFacil.js';
 import MegaScreen from './components/Mega.js';
 import QuinaScreen from './components/Quina.js';
 
@@ -39,9 +40,10 @@ function getComponentInstance(link) {
     
     switch (link) {
         case 'mania': return new LotomaniaScreen(navigate,userLanguage);
-        case 'facil': return new LotofacilScreen(navigate,userLanguage);
+        case 'facil': return new LotoFacilScreen(navigate,userLanguage);
         case 'mega': return new MegaScreen(navigate,userLanguage);
         case 'quina': return new QuinaScreen(navigate,userLanguage);
+        case 'cadfacil': return new CadFacil();
         default: return null;
     }
 }

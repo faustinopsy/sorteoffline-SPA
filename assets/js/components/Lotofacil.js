@@ -1,10 +1,10 @@
-export default class LotofacilScreen {
+export default class LotoFacilScreen {
     constructor(navigateCallback,lang) {
         this.navigateCallback = navigateCallback;
         this.menuItems = [
-            { href: "conferir", icon: "assets/img/conf.png", text: "CONFERIR", id: "1-0" },
-            { href: "listar", icon: "assets/img/list.png", text: "LISTAR", id: "1-1" },
-            { href: "cadastrar", icon: "assets/img/cad.png", text: "CADASTRAR", id: "0-2" },
+            { href: "conferefacil", icon: "assets/img/conf.png", text: "CONFERIR", id: "1-0" },
+            { href: "listafacil", icon: "assets/img/list.png", text: "LISTAR", id: "1-1" },
+            { href: "cadfacil", icon: "assets/img/cad.png", text: "CADASTRAR", id: "0-2" },
         ];
         this.userLanguage = lang; 
         this.loadLanguage();
