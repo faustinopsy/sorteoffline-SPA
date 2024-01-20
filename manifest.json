@@ -1,0 +1,22 @@
+{
+  "name": "OffCoin",
+  "short_name": "OffCoin",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "lang": "pt-BR",
+  "orientation": "portrait",
+  "prefer_related_applications": false,
+    "fcm_sender_id": "952219745992",
+  "icons": [
+    {
+      "src": "assets//img/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+  
+}
