@@ -1,10 +1,8 @@
-import  LocalStorageJS  from './LocalStorage.js';
-export default class ListaFacil {
-    constructor() {
+export default class BuscaApi {
+    constructor(consurso, loteria) {
         this.displayValue = '0'
-        this.buscalocal = null;
-        this.lista = null;
-        this.Listar();
+        this.numero = consurso;
+        this.loteria = loteria;
     }
 
     init() {
@@ -17,9 +15,23 @@ export default class ListaFacil {
     }
 
 
-    Listar() {
-        this.buscalocal = new LocalStorageJS(this.displayValue);
-        this.lista = this.buscalocal.ListaLotofacil();
+    async buscaResultadosAPI() {
+        try {
+            const response = await fetch(`https://servicebus2.caixa.gov.br/portaldeloterias/api/${this.loteria}/${this.numero}`,{
+                method: 'GET',
+                redirect: 'follow'
+            });
+            if (!response.ok) {
+                console.log(`Erro HTTP! status: ${response.status} na porta: ${port}`);
+            }else{
+                const resultado = await response.json();
+                return resultado;
+            }
+                
+        } catch (error) {
+            console.log(`Falha ao conectar na porta  ${error.message}`);
+        }
+
     }
 
     

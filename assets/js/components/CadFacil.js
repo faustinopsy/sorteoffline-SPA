@@ -1,6 +1,8 @@
+import  LocalStorageJS  from './LocalStorage.js';
 export default class CadFacil {
     constructor() {
         this.displayValue = '0'
+        this.buscalocal = null;
     }
 
     init() {
@@ -11,11 +13,11 @@ export default class CadFacil {
     bindEvents() {
         document.getElementById('bclear').addEventListener('click', () => this.clearDisplay());
         document.querySelectorAll('.bolas').forEach(button => {
-            if (button.id !== 'carregar' && button.id !== 'bclear' && button.id !== 'cobrarBtn') {
+            if (button.id !== 'carregar' && button.id !== 'bclear' && button.id !== 'salvarBtn') {
                 button.addEventListener('click', () => this.pressButton(button.textContent));
             }
         });
-        document.getElementById('cobrarBtn').addEventListener('click', () => this.cobranca());
+        document.getElementById('salvarBtn').addEventListener('click', () => this.salvar());
         //document.getElementById('modalCloseBtn').addEventListener('click', () => this.closeModal());
     }
 
@@ -23,7 +25,7 @@ export default class CadFacil {
         if (this.displayValue === '0') {
             this.displayValue = num;
         } else {
-            this.displayValue += '-'+ num;
+            this.displayValue += ','+ num;
         }
         this.updateDisplay();
     }
@@ -35,33 +37,15 @@ export default class CadFacil {
     clearDisplay() {
         this.displayValue = '0';
         this.updateDisplay();
+        this.buscalocal = new LocalStorageJS(this.displayValue)
+        console.log(this.buscalocal.ListaLotofacil())
     }
 
-    cobranca() {
-        const valorCobranca = parseInt(this.displayValue, 10);
-        if (valorCobranca > 0) {
-            document.getElementById('statusMessage').textContent = 'Aguardando leitura da tag NFC...';
-            this.showModal();
-            this.iniciarLeituraNFC(valorCobranca);
-        } else {
-            Swal.fire({
-                title: "Insira um valor para cobrar.",
-                showClass: {
-                  popup: `
-                    animate__animated
-                    animate__fadeInUp
-                    animate__faster
-                  `
-                },
-                hideClass: {
-                  popup: `
-                    animate__animated
-                    animate__fadeOutDown
-                    animate__faster
-                  `
-                }
-              });
-        }
+    salvar() {
+        this.buscalocal = new LocalStorageJS(this.displayValue)
+        this.buscalocal.salvarLotofacil();
+        this.displayValue = '0';
+        this.updateDisplay();
     }
 
     
@@ -103,14 +87,14 @@ export default class CadFacil {
             }
         });
         const btns = [
-            'C', '📥'
+            '🗑️', '💾'
         ];
         btns.forEach((text, index) => {
         const buttonc = document.createElement('button');
         buttonc.textContent = text;
         
-        if (text === 'C') buttonc.id = 'bclear';
-        if (text === '📥') buttonc.id = 'cobrarBtn';
+        if (text === '🗑️') buttonc.id = 'bclear';
+        if (text === '💾') buttonc.id = 'salvarBtn';
         containerDiv.appendChild(buttonc);
         });
         

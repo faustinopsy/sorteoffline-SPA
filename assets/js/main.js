@@ -3,6 +3,8 @@ import MenuGenerator from './components/Home.js';
 import LotomaniaScreen from './components/Lotomania.js';
 import LotoFacilScreen from './components/LotoFacil.js';
 import CadFacil from './components/CadFacil.js';
+import ListaFacil from './components/ListaFacil.js';
+import ConfereFacil from './components/ConfereFacil.js';
 import MegaScreen from './components/Mega.js';
 import QuinaScreen from './components/Quina.js';
 
@@ -44,6 +46,8 @@ function getComponentInstance(link) {
         case 'mega': return new MegaScreen(navigate,userLanguage);
         case 'quina': return new QuinaScreen(navigate,userLanguage);
         case 'cadfacil': return new CadFacil();
+        case 'listafacil': return new ListaFacil();
+        case 'conferefacil': return new ConfereFacil();
         default: return null;
     }
 }
