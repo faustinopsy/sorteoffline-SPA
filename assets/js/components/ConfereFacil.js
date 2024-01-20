@@ -11,7 +11,7 @@ export default class ConfereFacil {
     }
 
     init() {
-        this.attachEventListeners();
+        this.bindEvents();
         this.atualizaEstiloCabecalho();
     }
     
@@ -24,11 +24,38 @@ export default class ConfereFacil {
     }
 
     bindEvents() {
-        
+        this.assetInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+        });
+    
+        this.buscarButton.addEventListener('click', () => {
+            if (this.assetInput.value !== '') {
+                this.Listar();
+            } else {
+                this.exibeModal(); 
+            }
+        });
+    
     }
-    attachEventListeners() {
-        this.buscarButton.addEventListener('click', () => this.Listar());
-        
+    
+    exibeModal(){
+        Swal.fire({
+            title: "Preench um número busca.",
+            showClass: {
+              popup: `
+                animate__animated
+                animate__fadeInUp
+                animate__faster
+              `
+            },
+            hideClass: {
+              popup: `
+                animate__animated
+                animate__fadeOutDown
+                animate__faster
+              `
+            }
+          });
     }
     comparaNumeros(meusnumeros, numerosSorteados) {
         const numerosAcertados = meusnumeros.filter(numero => numerosSorteados.includes(numero));
@@ -42,10 +69,13 @@ export default class ConfereFacil {
 
         this.buscalocal = new LocalStorageJS(this.displayValue)
         this.meusnumeros = this.buscalocal.ListaLotofacil()
-        console.log(this.buscalocal.ListaLotofacil())
 
         const divnova = document.querySelector('.main');
-        divnova.innerHTML +=  `Data: ${this.lista.dataApuracao}
+        divnova.innerHTML +=  `Concurso Anterior ${this.lista.numeroConcursoAnterior} - 
+                             Próximo Concurso ${this.lista.numeroConcursoProximo} 
+                            <br>
+                            Data: ${this.lista.dataApuracao} - Acumulou: ${this.lista.acumulado? 'Sim':'Não'}
+
                             <br> Sorteio: ${this.lista.listaDezenas}`
          this.meusnumeros.forEach((numeros, index) => {
             const meustaloes = numeros.split(',').map(Number);
@@ -53,7 +83,7 @@ export default class ConfereFacil {
 
             const list = document.createElement('p');
             list.id = index+1;
-            divnova.innerHTML += `<br>Talão ${index+1}: ${numeros} - Acertos: ${acertos}`;
+            divnova.innerHTML += `<br>Talão <b>${index+1}: ${numeros} </b>- Acertos: ${acertos}`;
 
         });
     }
