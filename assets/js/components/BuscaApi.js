@@ -14,26 +14,33 @@ export default class BuscaApi {
         
     }
 
-
     async buscaResultadosAPI() {
+        const cacheKey = `resultado-${this.loteria}-${this.numero}`;
+    
+        const cachedResult = localStorage.getItem(cacheKey);
+        if (cachedResult) {
+            return JSON.parse(cachedResult);
+        }
+    
         try {
-            const response = await fetch(`https://servicebus2.caixa.gov.br/portaldeloterias/api/${this.loteria}/${this.numero}`,{
+            const response = await fetch(`https://servicebus2.caixa.gov.br/portaldeloterias/api/${this.loteria}/${this.numero}`, {
                 method: 'GET',
                 redirect: 'follow'
             });
+    
             if (!response.ok) {
-                console.log(`Erro HTTP! status: ${response.status} na porta: ${port}`);
-            }else{
+                console.log(`Erro HTTP! status: ${response.status}`);
+            } else {
                 const resultado = await response.json();
+                localStorage.setItem(cacheKey, JSON.stringify(resultado));
                 return resultado;
             }
-                
+    
         } catch (error) {
-            console.log(`Falha ao conectar na porta  ${error.message}`);
+            console.log(`Falha ao conectar: ${error.message}`);
         }
-
     }
-
+    
     
     render() {
         
