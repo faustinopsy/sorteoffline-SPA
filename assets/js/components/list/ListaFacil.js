@@ -31,11 +31,21 @@ export default class ListaFacil {
         this.Listar();
         this.renderList();
     }
-
+    excluirTodos(){
+        this.buscalocal = new LocalStorageJS();
+        this.buscalocal.excluirTodos('facil', 'lotofacil');
+        this.Listar();
+        this.renderList();
+    }
     renderList() {
         const containerDiv = document.querySelector('.container');
         containerDiv.innerHTML = ''; 
-
+        const excluirTodosButton = document.createElement('button');
+        excluirTodosButton.id = 'bclear'
+        excluirTodosButton.textContent = 'Excluir Tudo';
+        excluirTodosButton.addEventListener('click', () => this.excluirTodos());
+    
+        containerDiv.appendChild(excluirTodosButton);
         this.lista.forEach((text, index) => {
             const list = document.createElement('li');
             list.id = `item-${index}`;
@@ -58,14 +68,10 @@ export default class ListaFacil {
         const containerDiv = document.createElement('div');
         containerDiv.className = 'container';
 
-        const statusMessageDiv = document.createElement('div');
-        statusMessageDiv.id = 'statusMessage';
-        containerDiv.appendChild(statusMessageDiv);
-
         const tecladoDiv = document.createElement('div');
         tecladoDiv.id = 'teclado'; 
         containerDiv.appendChild(tecladoDiv);
-
+        
         mainDiv.appendChild(containerDiv);
 
         return {

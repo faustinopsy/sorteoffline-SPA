@@ -76,6 +76,7 @@ class App {
         const existingNavbar = document.querySelector('#navbar');
         if (!existingNavbar) {
             document.body.insertBefore(this.navbar.render(), this.appElement);
+            this.navbar.init();
         }
     }
 }

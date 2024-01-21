@@ -9,7 +9,23 @@ export default class Navbar {
             { text: 'mania', icon: "assets/img/nmania.png" },
         ];
     }
-
+    init() {
+        const navbarElement = document.getElementById('navbar');
+        if (!navbarElement) return; 
+    
+        let lastScrollTop = 0;
+    
+        window.addEventListener("scroll", function() {
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            if (currentScroll > lastScrollTop) {
+                navbarElement.style.bottom = "-80px"; 
+            } else {
+                navbarElement.style.bottom = "0"; 
+            }
+            lastScrollTop = currentScroll;
+        }, false);
+    }
+    
     render() {
         const navbarElement = document.createElement('header');
         navbarElement.id = 'navbar';
