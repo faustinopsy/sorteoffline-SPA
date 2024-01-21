@@ -70,7 +70,7 @@ export default class ConfereFacil {
         this.buscalocal = new LocalStorageJS(this.displayValue);
         this.meusnumeros = this.buscalocal.listaLoteria('facil', 'lotofacil');
     
-        const divnova = document.querySelector('.main');
+        const divnova = document.querySelector('.container');
         const input = document.querySelector('#valorTransferencia');
         const botao = document.querySelector('.sell');
         divnova.innerHTML = '';
@@ -92,7 +92,7 @@ export default class ConfereFacil {
     
             const list = document.createElement('p');
             list.id = index + 1;
-            list.innerHTML = `<br>Talão <b>${index + 1}: ${numeros} </b>- Acertos: ${acertos}`;
+            list.innerHTML = `<br>Talão <b>${index + 1}: ${numeros} </b>- Acertos: ${acertos}<br>`;
             divnova.appendChild(list);
         });
     
