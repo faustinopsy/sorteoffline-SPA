@@ -1,23 +1,7 @@
 let deferredPrompt; 
 let setupButton;
 history.pushState(null, document.title, location.href);
-window.addEventListener('popstate', function(event) {
-    if (!isIndexPage()) {
-        window.location.href = "/index.html";
-    } else {
-        var resultado = confirm("Deseja fechar o aplicativo?");
-        if (resultado) {
-           window.close();
-        } else {
-            history.pushState(null, document.title, location.href);
-        }
-    }
-});
-function isIndexPage() {
-    if(location.pathname === "/index.html" || location.pathname === "/"){
-        return true;
-    }
-}
+
 document.addEventListener('DOMContentLoaded', () => {
     //if (!isMobileDevice()) {
         mostrarModalNaoFechavel();
