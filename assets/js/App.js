@@ -48,8 +48,8 @@ class App {
     }
 
     getComponentInstance(link) {
-        window.location.hash = link;
-        history.pushState(null, '', link);
+        //window.location.hash = link;
+        //history.pushState(null, '', link);
 
         switch (link) {
             case 'mania': return new LotomaniaScreen(this.navigate.bind(this), this.userLanguage);
