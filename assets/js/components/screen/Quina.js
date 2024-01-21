@@ -1,4 +1,4 @@
-export default class MegaScreen {
+export default class QuinaScreen {
   constructor(navigateCallback,lang) {
       this.navigateCallback = navigateCallback;
       this.menuItems = [
@@ -8,6 +8,7 @@ export default class MegaScreen {
       ];
       this.userLanguage = lang; 
       this.loadLanguage();
+      this.init();
   }
   loadLanguage() {
       this.userLanguage = this.userLanguage.split('-')[0];
@@ -22,10 +23,18 @@ export default class MegaScreen {
   }
 
   init() {
-      
+    this.atualizaEstiloCabecalho();
+  }
+
+  atualizaEstiloCabecalho() {
+      const cabecalho = document.querySelector('.app-header');
+      if (cabecalho) {
+          cabecalho.style.background = 'linear-gradient(rgb(0, 0, 0), rgb(63 98 230), rgb(47 118 200))'; 
+          cabecalho.style.boxShadow = 'rgb(47 118 200) 0px 36px 36px 56px'; 
+      }
   }
   render() {
-      document.getElementById('titulo').innerHTML='Megasena';
+      document.getElementById('titulo').innerHTML = 'Quina <br> em construção';
       const menuContainer = document.createElement('div');
       menuContainer.className = 'main';
       menuContainer.classList.add = 'container';

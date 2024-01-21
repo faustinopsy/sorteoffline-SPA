@@ -5,10 +5,12 @@ export default class MenuGenerator {
             { href: "facil", icon: "assets/img/lotofacil.png", text: "LOTOFACIL", id: "1-0" },
             { href: "mega", icon: "assets/img/megasena.png", text: "MEGASENA", id: "1-1" },
             { href: "quina", icon: "assets/img/quina.png", text: "QUINA", id: "0-2" },
-            { href: "mania", icon: "assets/img/lotomania.png", text: "LOTOMANIA", id: "0-0" }
+            { href: "mania", icon: "assets/img/lotomania.png", text: "LOTOMANIA", id: "0-0" },
+            { href: "about", icon: "assets/img/about.png", text: "ABOUT", id: "0-0" }
         ];
         this.userLanguage = lang; 
         this.loadLanguage();
+        this.init();
     }
     loadLanguage() {
         this.userLanguage = this.userLanguage.split('-')[0];
@@ -21,7 +23,19 @@ export default class MenuGenerator {
                 });
             });
     }
+    init() {
+        this.atualizaEstiloCabecalho();
+    }
+
+    atualizaEstiloCabecalho() {
+        const cabecalho = document.querySelector('.app-header');
+        if (cabecalho) {
+            cabecalho.style.background = 'linear-gradient(rgb(0, 0, 0), rgb(68, 131, 88), rgb(94, 194, 127))'; 
+            cabecalho.style.boxShadow = 'rgb(82 195 119) 0px 36px 36px 56px'; 
+        }
+    }
     render() {
+        document.getElementById('titulo').innerHTML='Boa Sorte!';
         const menuContainer = document.createElement('div');
         menuContainer.className = 'main';
         menuContainer.classList.add = 'container';

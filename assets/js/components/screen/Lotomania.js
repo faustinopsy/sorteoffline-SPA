@@ -1,13 +1,14 @@
-export default class LotoFacilScreen {
+export default class LotomaniaScreen {
     constructor(navigateCallback,lang) {
         this.navigateCallback = navigateCallback;
         this.menuItems = [
-            { href: "conferefacil", icon: "assets/img/conf.png", text: "CONFERIR", id: "1-0" },
-            { href: "listafacil", icon: "assets/img/list.png", text: "LISTAR", id: "1-1" },
-            { href: "cadfacil", icon: "assets/img/cad.png", text: "CADASTRAR", id: "0-2" },
+            { href: "conferir", icon: "assets/img/conf.png", text: "CONFERIR", id: "1-0" },
+            { href: "listar", icon: "assets/img/list.png", text: "LISTAR", id: "1-1" },
+            { href: "cadastrar", icon: "assets/img/cad.png", text: "CADASTRAR", id: "0-2" },
         ];
         this.userLanguage = lang; 
         this.loadLanguage();
+        this.init();
     }
     loadLanguage() {
         this.userLanguage = this.userLanguage.split('-')[0];
@@ -22,10 +23,18 @@ export default class LotoFacilScreen {
     }
 
     init() {
-        
+        this.atualizaEstiloCabecalho();
+    }
+
+    atualizaEstiloCabecalho() {
+        const cabecalho = document.querySelector('.app-header');
+        if (cabecalho) {
+            cabecalho.style.background = 'linear-gradient(rgb(0, 0, 0), rgb(242 133 35), rgb(242 133 35))'; 
+            cabecalho.style.boxShadow = 'rgb(242 133 35) 0px 36px 36px 56px'; 
+        }
     }
     render() {
-        document.getElementById('titulo').innerHTML='Lotofácil';
+        document.getElementById('titulo').innerHTML='Lotomania <br> em construção';
         const menuContainer = document.createElement('div');
         menuContainer.className = 'main';
         menuContainer.classList.add = 'container';
