@@ -15,7 +15,7 @@ class App {
         this.appElement = document.getElementById('app');
         this.userLanguage = navigator.language || navigator.userLanguage;
         this.navbar = new Navbar(this.navigate.bind(this));
-        this.addPopStateListener();
+        //this.addPopStateListener();
         this.navigate('🏠');
     }
 
