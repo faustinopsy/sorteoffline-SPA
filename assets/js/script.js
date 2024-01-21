@@ -1,3 +1,5 @@
+let deferredPrompt; 
+let setupButton;
 history.pushState(null, document.title, location.href);
 window.addEventListener('popstate', function(event) {
     if (!isIndexPage()) {
@@ -11,6 +13,11 @@ window.addEventListener('popstate', function(event) {
         }
     }
 });
+function isIndexPage() {
+    if(location.pathname === "/index.html" || location.pathname === "/"){
+        return true;
+    }
+}
 document.addEventListener('DOMContentLoaded', () => {
     //if (!isMobileDevice()) {
         mostrarModalNaoFechavel();
