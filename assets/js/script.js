@@ -36,7 +36,7 @@ function mostrarModalNaoFechavel() {
     modal.style.width = '100%';
     modal.style.height = '100%';
     modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-    modal.style.backdropFilter= 'blur(15px)';
+    modal.style.backdropFilter = 'blur(15px)';
     modal.style.display = 'flex';
     modal.style.justifyContent = 'center';
     modal.style.alignItems = 'center';
@@ -46,22 +46,43 @@ function mostrarModalNaoFechavel() {
     modalContent.style.backgroundColor = '#fff';
     modalContent.style.padding = '20px';
     modalContent.style.borderRadius = '5px';
-    modalContent.innerHTML = `
-    <h2>🚀 Embarque na Aventura!</h2>
-    <p>Olá, esse app é para você gerenciar seus jogos de loteria.</p>
-    <p> Todos os talões são armazenados localmente no seu navegador!</p>
-    <p>Espero que goste, feito de um jogador, para jogadores.</p> 
+    
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'Fechar';
+    closeButton.style.position = 'absolute';
+    closeButton.style.top = '10px';
+    closeButton.style.right = '10px';
+    closeButton.style.padding = '5px 10px';
+    closeButton.style.background = 'red';
+    closeButton.style.color = 'white';
+    closeButton.style.border = 'none';
+    closeButton.style.borderRadius = '5px';
+    closeButton.style.cursor = 'pointer';
 
-`;
+    closeButton.onclick = function() {
+        document.body.removeChild(modal);
+    };
+
+    
+    
+    modalContent.innerHTML += `
+        <h2>🚀 Embarque na Aventura!</h2>
+        <p>Olá, esse app é para você gerenciar seus jogos de loteria.</p>
+        <p> Todos os talões são armazenados localmente no seu navegador!</p>
+        <p>Espero que goste, feito de um jogador, para jogadores.</p> 
+    `;
+
     modal.appendChild(modalContent);
+    modalContent.appendChild(closeButton);
     document.body.appendChild(modal);
 }
+
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker
       .register('./sw.js')
       .then(serviceWorker => {
-        console.log('Rodando serviço: ' + serviceWorker);
+        console.log('Rodando serviÃ§o: ' + serviceWorker);
       })
       .catch(error => {
         console.log('Error registering the Service Worker: ' + error);
@@ -70,12 +91,12 @@ if ('serviceWorker' in navigator) {
   function registerNotification() {
       Notification.requestPermission(permission => {
           if (permission === 'granted'){ registerBackgroundSync() }
-          else console.error("Sem permissão.")
+          else console.error("Sem permissÃ£o.")
       })
   }
   function registerBackgroundSync() {
       if (!navigator.serviceWorker){
-          return console.error("Serviço não suportado")
+          return console.error("ServiÃ§o nÃ£o suportado")
       }
       navigator.serviceWorker.ready
       .then(registration => registration.sync.register('syncAttendees'))
@@ -103,9 +124,9 @@ if ('serviceWorker' in navigator) {
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {
             if (choiceResult.outcome === 'accepted') {
-                console.log('Usuário aceitou a instalação do PWA');
+                console.log('UsuÃ¡rio aceitou a instalaÃ§Ã£o do PWA');
             } else {
-                console.log('Usuário recusou a instalação do PWA');
+                console.log('UsuÃ¡rio recusou a instalaÃ§Ã£o do PWA');
             }
             deferredPrompt = null;
             installModal.style.display = 'none';
