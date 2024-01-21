@@ -15,7 +15,7 @@ export default class BuscaApi {
     }
     exibeModal(){
         Swal.fire({
-            title: "Esse Concurso não existe, ou nãofoi possivel recuperar resultados.",
+            title: "Esse Concurso não existe, ou não foi possivel recuperar os resultados.",
             showClass: {
               popup: `
                 animate__animated
