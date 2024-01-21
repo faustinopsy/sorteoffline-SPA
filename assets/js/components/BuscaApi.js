@@ -15,7 +15,7 @@ export default class BuscaApi {
     }
 
     async buscaResultadosAPI() {
-        const cacheKey = `resultado-${this.loteria}-${this.numero}`;
+        let cacheKey = `resultado-${this.loteria}-${this.numero}`;
     
         const cachedResult = localStorage.getItem(cacheKey);
         if (cachedResult) {

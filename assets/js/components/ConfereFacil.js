@@ -66,27 +66,39 @@ export default class ConfereFacil {
         this.busca = new BuscaApi(numero,'lotofacil');
         this.lista = await this.busca.buscaResultadosAPI();
         const numerosSorteados = this.lista.listaDezenas.map(Number);
-
-        this.buscalocal = new LocalStorageJS(this.displayValue)
-        this.meusnumeros = this.buscalocal.ListaLotofacil()
-
+    
+        this.buscalocal = new LocalStorageJS(this.displayValue);
+        this.meusnumeros = this.buscalocal.ListaLotofacil();
+    
         const divnova = document.querySelector('.main');
-        divnova.innerHTML +=  `Concurso Anterior ${this.lista.numeroConcursoAnterior} - 
-                             Próximo Concurso ${this.lista.numeroConcursoProximo} 
-                            <br>
-                            Data: ${this.lista.dataApuracao} - Acumulou: ${this.lista.acumulado? 'Sim':'Não'}
-
-                            <br> Sorteio: ${this.lista.listaDezenas}`
-         this.meusnumeros.forEach((numeros, index) => {
+        const input = document.querySelector('#valorTransferencia');
+        const botao = document.querySelector('.sell');
+        divnova.innerHTML = '';
+        divnova.appendChild(input);
+        divnova.appendChild(botao);
+        const conteudoNovo = `Concurso Anterior ${this.lista.numeroConcursoAnterior} - 
+                              Próximo Concurso ${this.lista.numeroConcursoProximo} 
+                              <br>
+                              Data: ${this.lista.dataApuracao} - Acumulou: ${this.lista.acumulado ? 'Sim' : 'Não'}
+                              <br> Sorteio: ${this.lista.listaDezenas}`;
+    
+        const conteudoDiv = document.createElement('div');
+        conteudoDiv.innerHTML = conteudoNovo;
+        divnova.appendChild(conteudoDiv);
+    
+        this.meusnumeros.forEach((numeros, index) => {
             const meustaloes = numeros.split(',').map(Number);
             const acertos = this.comparaNumeros(meustaloes, numerosSorteados);
-
+    
             const list = document.createElement('p');
-            list.id = index+1;
-            divnova.innerHTML += `<br>Talão <b>${index+1}: ${numeros} </b>- Acertos: ${acertos}`;
-
+            list.id = index + 1;
+            list.innerHTML = `<br>Talão <b>${index + 1}: ${numeros} </b>- Acertos: ${acertos}`;
+            divnova.appendChild(list);
         });
+    
+        this.assetInput.value = '';
     }
+    
 
     
     render() {
@@ -96,10 +108,6 @@ export default class ConfereFacil {
 
         const containerDiv = document.createElement('div');
         containerDiv.className = 'container';
-
-        const statusMessageDiv = document.createElement('div');
-        statusMessageDiv.id = 'statusMessage';
-        containerDiv.appendChild(statusMessageDiv);
 
         const tecladoDiv = document.createElement('div');
 
