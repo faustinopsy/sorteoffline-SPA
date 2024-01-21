@@ -2,19 +2,21 @@ const CACHE_NAME = 'v001';
 const STATIC_CACHE_URLS = [
  'index.html', 
  'manifest.json', 
- 'assets/js/main.js',
+ 'assets/js/App.js',
  'assets/js/sweetalert2.11.js',
  'assets/js/lang/eng.json',
  'assets/js/lang/pt.json',
- 'assets/js/components/Navbar.js';
- 'assets/js/components/Home.js';
- 'assets/js/components/Lotomania.js';
- 'assets/js/components/LotoFacil.js';
- 'assets/js/components/CadFacil.js';
- 'assets/js/components/ListaFacil.js';
- 'assets/js/components/ConfereFacil.js';
- 'assets/js/components/Mega.js';
- 'assets/js/components/Quina.js';
+ 'assets/js//components/Navbar.js',
+ 'assets/js//components/screen/About.js',
+ 'assets/js//components/Home.js',
+ 'assets/js//components/screen/Lotomania.js',
+ 'assets/js//components/screen/Lotofacil.js',
+ 'assets/js//components/cad/CadFacil.js',
+ 'assets/js//components/list/ListaFacil.js',
+ 'assets/js/./components/list/ConfereFacil.js',
+ 'assets/js//components/screen/Mega.js',
+ 'assets/js//components/screen/Quina.js',
+ 'assets/js//components/lib/GerarCombinacoes.js',
  'assets/css/styles.css',
  'assets/css/menu.css',
  'assets/img/cad.png',
