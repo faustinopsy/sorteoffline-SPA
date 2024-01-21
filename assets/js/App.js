@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar.js';
+import AboutScreen from './components/screen/About.js';
 import MenuGenerator from './components/Home.js';
 import LotomaniaScreen from './components/screen/Lotomania.js';
 import LotoFacilScreen from './components/screen/Lotofacil.js';
@@ -7,6 +8,7 @@ import ListaFacil from './components/list/ListaFacil.js';
 import ConfereFacil from './components/list/ConfereFacil.js';
 import MegaScreen from './components/screen/Mega.js';
 import QuinaScreen from './components/screen/Quina.js';
+import GeradorCombinacoes from './components/lib/GerarCombinacoes.js';
 
 class App {
     constructor() {
@@ -54,9 +56,11 @@ class App {
             case 'facil': return new LotoFacilScreen(this.navigate.bind(this), this.userLanguage);
             case 'mega': return new MegaScreen(this.navigate.bind(this), this.userLanguage);
             case 'quina': return new QuinaScreen(this.navigate.bind(this), this.userLanguage);
+            case 'about': return new AboutScreen(this.userLanguage);
             case 'cadfacil': return new CadFacil();
             case 'listafacil': return new ListaFacil();
             case 'conferefacil': return new ConfereFacil();
+            case 'combinacoesFacil': return new GeradorCombinacoes();
             default: return null;
         }
     }

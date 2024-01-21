@@ -5,6 +5,7 @@ export default class LotoFacilScreen {
             { href: "conferefacil", icon: "assets/img/conf.png", text: "CONFERIR", id: "1-0" },
             { href: "listafacil", icon: "assets/img/list.png", text: "LISTAR", id: "1-1" },
             { href: "cadfacil", icon: "assets/img/cad.png", text: "CADASTRAR", id: "0-2" },
+            { href: "combinacoesFacil", icon: "assets/img/combina.png", text: "COMBINACAO", id: "0-2" },
         ];
         this.userLanguage = lang; 
         this.loadLanguage();

@@ -1,13 +1,151 @@
-body {
-    font-family: Arial, sans-serif;
+
+body{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    background-color:  #0086ffde;
-    padding: 10px;
-    border-radius: 20px 20px 0 0;
+    width: 100%;
+    margin-top:20px;
+    margin-left:10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+    background: #0086ffde;
+    color:#2D5D7B;
+	user-select: none;
+    overflow-x: hidden;
 }
+body, html {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    width: 100%;
+    background: #ffa739;
+}
+.main{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+	min-width: 300px;
+    margin-top: 0;
+    padding: 2px;
+    border-radius: 30px 30px 0 0;
+    background: #ffa739;
+}
+#app{
+    border-radius: 30px 30px 0 0;
+}
+.menu{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+    .menu__item{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 150px;
+        height: 150px;
+        cursor: pointer;
+        background: transparent;
+        z-index: 100;
+        transition: 150ms;
+        
+    }
+    .menu__icon:hover{ animation: icon .1s 5; }
+    .menu__span:hover{ transform: translateY(-17px); transition: 300ms;}
+    .menu__icon{
+        width: 100px;
+        height: 100px;	
+        object-fit: contain;
+        margin: 2px;
+		border: 1px solid black;
+		background-color: #94d8ff;
+        border-radius: 50%;
+    }
+    .icon{
+        width: 50px;
+        height: 50px;	
+        object-fit: contain;
+        margin: 2px;
+		border: 1px solid black;
+		background-color: #94d8ff;
+        border-radius: 50%;
+    }
+    .menu__content{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        height: 18px;
+        overflow: hidden;
+    }
+
+
+@keyframes icon {
+    0%{ transform: rotateZ(-10deg); }
+    100%{ transform: rotateZ(10deg); }
+}
+
+
+.app-header {
+    background: linear-gradient(to bottom, rgb(0, 0, 0), blue, rgb(0, 149, 255));
+    padding: 4px;
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    box-shadow: 0 36px 36px 56px rgb(0, 149, 255);
+}
+
+.app-balance {
+    margin: 20px 0;
+}
+
+.app-balance span {
+    font-size: 1.5em;
+}
+
+.app-actions button,
+.app-features button,
+.app-footer button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    color: #333;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.app-actions button:hover,
+.app-features button:hover,
+.app-footer button:hover {
+    background-color: #ddd;
+}
+
+.app-footer {
+    align-items: center;
+    text-align: center;
+    margin-top: auto;
+    background-color: #333;
+    color: white;
+}
+
+.app-footer button {
+    background: none;
+    color: white;
+}
+
+
 #navbar {
     position: fixed;  
     bottom: 0;
@@ -50,6 +188,18 @@ body {
     color: #007bff;
     box-shadow: 5px 5px 5px #888888;
 }
+#combinadisplay {
+    width: 200px;
+    margin-bottom: 10px;
+    text-align: right;
+    padding: 10px;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px 5px;
+    background-color: #fff;
+    color: #007bff;
+    box-shadow: 5px 5px 5px #888888;
+}
 #valorTransferencia{
     font-size: 20px;
     width: 60%;
@@ -71,8 +221,8 @@ body {
     max-width: 300px;
 }
 .bolas{
-    width: 56px;
-    height: 56px;
+    width: 45px;
+    height: 45px;
     border: none;
     border-radius: 50%;
     font-size: 1em;
@@ -191,4 +341,40 @@ a {
 
 .hidden {
     display: none;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 20px 5px;
+}
+
+.modal-content {
+    background-color: #752c7138;
+    backdrop-filter: blur(20px);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 20px 5px;
+    width: 80%;
+    color: white;
+}
+
+.close-button {
+    color: #ff0e0e;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

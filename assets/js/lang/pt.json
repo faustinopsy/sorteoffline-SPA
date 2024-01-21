@@ -5,5 +5,18 @@
     "LOTOMANIA": "Lotomania",
     "CONFERIR": "Conferir",
     "LISTAR": "Listar",
-    "CADASTRAR": "Cadastrar"
+    "CADASTRAR": "Cadastrar",
+    "COMBINACAO": "Combinações",
+    "ABOUT": "O que é",
+    "aboutDescription": "Este aplicativo é uma ferramenta poderosa para entusiastas da loteria, oferecendo recursos como geração de combinações de números e análise de resultados de loterias.",
+    "technologiesUsed": "Tecnologias Utilizadas:",
+    "techHTMLCSS": "HTML5 & CSS3 para layout e estilização",
+    "techJavaScript": "JavaScript para interatividade",
+    "techLocalStorage": "API de LocalStorage para persistência de dados",
+    "features": "Recursos:",
+    "featureGenerate": "Gerar combinações de números de loteria",
+    "featureSaveManage": "Salvar e gerenciar combinações favoritas",
+    "featureAnalyze": "Analisar resultados anteriores de loterias",
+    "featureCustomizeUI": "Interface de usuário customizável baseada nas preferências de idioma",
+    "closingRemark": "Nosso aplicativo foi projetado para aprimorar sua experiência com a loteria, fornecendo insights personalizados e economizando seu tempo."
 }

@@ -34,7 +34,7 @@ export default class QuinaScreen {
       }
   }
   render() {
-      document.getElementById('titulo').innerHTML='Quina';
+      document.getElementById('titulo').innerHTML = 'Quina <br> em construção';
       const menuContainer = document.createElement('div');
       menuContainer.className = 'main';
       menuContainer.classList.add = 'container';

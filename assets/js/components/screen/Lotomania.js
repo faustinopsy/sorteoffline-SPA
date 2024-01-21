@@ -34,7 +34,7 @@ export default class LotomaniaScreen {
         }
     }
     render() {
-        document.getElementById('titulo').innerHTML='Lotomania';
+        document.getElementById('titulo').innerHTML='Lotomania <br> em construção';
         const menuContainer = document.createElement('div');
         menuContainer.className = 'main';
         menuContainer.classList.add = 'container';
