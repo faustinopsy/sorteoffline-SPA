@@ -1,12 +1,12 @@
 import Navbar from './components/Navbar.js';
 import MenuGenerator from './components/Home.js';
-import LotomaniaScreen from './components/Lotomania.js';
-import LotoFacilScreen from './components/Lotofacil.js';
-import CadFacil from './components/CadFacil.js';
-import ListaFacil from './components/ListaFacil.js';
-import ConfereFacil from './components/ConfereFacil.js';
-import MegaScreen from './components/Mega.js';
-import QuinaScreen from './components/Quina.js';
+import LotomaniaScreen from './components/screen/Lotomania.js';
+import LotoFacilScreen from './components/screen/Lotofacil.js';
+import CadFacil from './components/cad/CadFacil.js';
+import ListaFacil from './components/list/ListaFacil.js';
+import ConfereFacil from './components/list/ConfereFacil.js';
+import MegaScreen from './components/screen/Mega.js';
+import QuinaScreen from './components/screen/Quina.js';
 
 class App {
     constructor() {

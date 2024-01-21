@@ -1,4 +1,4 @@
-import  LocalStorageJS  from './LocalStorage.js';
+import  LocalStorageJS  from '../lib/LocalStorage.js';
 export default class CadFacil {
     constructor() {
         this.displayValue = '0'
@@ -83,7 +83,7 @@ export default class CadFacil {
     
         const numerosOrdenadosString = numerosOrdenados.map(num => num < 10 ? '0' + num : num).join(',');
         this.buscalocal = new LocalStorageJS(numerosOrdenadosString);
-        this.buscalocal.salvarLotofacil();
+        this.buscalocal.salvarLoteria('facil', 'lotofacil');
     
         this.displayValue = '0';
         this.exibeModal();

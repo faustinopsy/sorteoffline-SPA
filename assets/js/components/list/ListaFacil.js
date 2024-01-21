@@ -1,14 +1,16 @@
-import  LocalStorageJS  from './LocalStorage.js';
+import  LocalStorageJS  from '../lib/LocalStorage.js';
 export default class ListaFacil {
     constructor() {
         this.displayValue = '0'
         this.buscalocal = null;
         this.lista = null;
-        this.Listar();
+        
     }
 
     init() {
         this.atualizaEstiloCabecalho();
+        this.Listar();
+        this.renderList(); 
     }
 
     atualizaEstiloCabecalho() {
@@ -21,12 +23,35 @@ export default class ListaFacil {
 
     Listar() {
         this.buscalocal = new LocalStorageJS(this.displayValue);
-        this.lista = this.buscalocal.ListaLotofacil();
+        this.lista = this.buscalocal.listaLoteria('facil', 'lotofacil');
     }
 
-    
+    removerItem(index) {
+        this.buscalocal.removerItemLoteria('facil', 'lotofacil', index);
+        this.Listar();
+        this.renderList();
+    }
+
+    renderList() {
+        const containerDiv = document.querySelector('.container');
+        containerDiv.innerHTML = ''; 
+
+        this.lista.forEach((text, index) => {
+            const list = document.createElement('li');
+            list.id = `item-${index}`;
+            list.textContent = `Nº ${index + 1} : ${text} `;
+
+            const removeButton = document.createElement('button');
+            removeButton.id = 'bclear'
+            removeButton.textContent = 'Remover';
+            removeButton.addEventListener('click', () => this.removerItem(index));
+            
+            list.appendChild(removeButton);
+            containerDiv.appendChild(list);
+        });
+    }
+
     render() {
-        
         const mainDiv = document.createElement('div');
         mainDiv.className = 'main';
 
@@ -38,17 +63,11 @@ export default class ListaFacil {
         containerDiv.appendChild(statusMessageDiv);
 
         const tecladoDiv = document.createElement('div');
-        this.lista.forEach((text, index) => {
-            const list = document.createElement('p');
-            list.id = index+1;
-            list.textContent = `Nº ${index+1} : ${text}`;
-            tecladoDiv.appendChild(list);
-
-        });
-        
+        tecladoDiv.id = 'teclado'; 
         containerDiv.appendChild(tecladoDiv);
+
         mainDiv.appendChild(containerDiv);
-        
+
         return {
             element: mainDiv,
             init: () => this.init() 

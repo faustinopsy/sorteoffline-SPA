@@ -1,5 +1,5 @@
-import  BuscaApi  from './BuscaApi.js';
-import  LocalStorageJS  from './LocalStorage.js';
+import  BuscaApi  from '../lib/BuscaApi.js';
+import  LocalStorageJS  from '../lib/LocalStorage.js';
 export default class ConfereFacil {
     constructor() {
         this.displayValue = '0'
@@ -68,7 +68,7 @@ export default class ConfereFacil {
         const numerosSorteados = this.lista.listaDezenas.map(Number);
     
         this.buscalocal = new LocalStorageJS(this.displayValue);
-        this.meusnumeros = this.buscalocal.ListaLotofacil();
+        this.meusnumeros = this.buscalocal.listaLoteria('facil', 'lotofacil');
     
         const divnova = document.querySelector('.main');
         const input = document.querySelector('#valorTransferencia');
