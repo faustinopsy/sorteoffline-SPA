@@ -1,9 +1,39 @@
+import LocalStorageJS from '../lib/LocalStorage.js';
 export default class GeradorCombinacoes {
     constructor() {
         this.numerosSelecionados = new Set();
         this.maxNumeros = 25;
     }
+    salvarCombinacoes(combinacoes) {
+        combinacoes.forEach(combinacao => {
+            const combinacaoString = combinacao.map(num => num < 10 ? '0' + num : num).join(',');
+            this.buscalocal = new LocalStorageJS(combinacaoString);
+            this.buscalocal.salvarLoteria('facil', 'lotofacil');
+        });
+    
+        this.exibeModal('Combinações salvas com sucesso!');
+    }
+    
 
+    exibeModal(mensagem) {
+        Swal.fire({
+            title: mensagem,
+            showClass: {
+                popup: `
+                    animate__animated
+                    animate__fadeInUp
+                    animate__faster
+                `
+            },
+            hideClass: {
+                popup: `
+                    animate__animated
+                    animate__fadeOutDown
+                    animate__faster
+                `
+            }
+        });
+    }
     gerarCombinacoes(arr, tamanho) {
         function auxiliar(init, left, k) {
             if (k === 0) {
@@ -58,13 +88,21 @@ export default class GeradorCombinacoes {
         closeButton.onclick = () => modal.style.display = 'none';
 
         modalContent.appendChild(closeButton);
+
+        const saveButton = document.createElement('button');
+        saveButton.textContent = 'Salvar Combinações';
+        saveButton.className = 'salvarBtn';
+        saveButton.addEventListener('click', () => this.salvarCombinacoes(combinacoesSelecionadas));
+        modalContent.appendChild(saveButton);
+
+
         combinacoesSelecionadas.forEach((combinacao, index) => {
             const combinacaoDiv = document.createElement('div');
             combinacaoDiv.className = 'combinacao';
             combinacaoDiv.innerHTML = `<b>Combinação  ${index + 1}: </b><br> ${combinacao.join(', ')}`;
             modalContent.appendChild(combinacaoDiv);
         });
-
+        
         modal.appendChild(modalContent);
         document.body.appendChild(modal);
 
@@ -91,6 +129,10 @@ export default class GeradorCombinacoes {
         gerarButton.textContent = 'Gerar';
         gerarButton.addEventListener('click', () => {
             const quantidade = parseInt(inputQuantidade.value) || 0;
+            if(quantidade<2){
+                this.exibeModal('Gere ao menos 2 combinações')
+                return
+            }
             const todasCombinacoes = this.gerarCombinacoes(Array.from(this.numerosSelecionados), 15);
             const combinacoesSelecionadas = this.selecionarCombinacoesAleatorias(todasCombinacoes, quantidade);
             this.renderizarCombinacoes(combinacoesSelecionadas);

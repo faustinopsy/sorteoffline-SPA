@@ -15,7 +15,7 @@ class App {
         this.appElement = document.getElementById('app');
         this.userLanguage = navigator.language || navigator.userLanguage;
         this.navbar = new Navbar(this.navigate.bind(this));
-        this.addPopStateListener();
+        //this.addPopStateListener();
         this.navigate('🏠');
     }
 
@@ -48,8 +48,8 @@ class App {
     }
 
     getComponentInstance(link) {
-        window.location.hash = link;
-        history.pushState(null, '', link);
+        //window.location.hash = link;
+        //history.pushState(null, '', link);
 
         switch (link) {
             case 'mania': return new LotomaniaScreen(this.navigate.bind(this), this.userLanguage);
@@ -76,6 +76,7 @@ class App {
         const existingNavbar = document.querySelector('#navbar');
         if (!existingNavbar) {
             document.body.insertBefore(this.navbar.render(), this.appElement);
+            this.navbar.init();
         }
     }
 }

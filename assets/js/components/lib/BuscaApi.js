@@ -13,7 +13,25 @@ export default class BuscaApi {
     bindEvents() {
         
     }
-
+    exibeModal(){
+        Swal.fire({
+            title: "Esse Concurso não existe, ou não foi possivel recuperar os resultados.",
+            showClass: {
+              popup: `
+                animate__animated
+                animate__fadeInUp
+                animate__faster
+              `
+            },
+            hideClass: {
+              popup: `
+                animate__animated
+                animate__fadeOutDown
+                animate__faster
+              `
+            }
+          });
+    }
     async buscaResultadosAPI() {
         let cacheKey = `resultado-${this.loteria}-${this.numero}`;
     
@@ -29,6 +47,7 @@ export default class BuscaApi {
             });
     
             if (!response.ok) {
+                this.exibeModal()
                 console.log(`Erro HTTP! status: ${response.status}`);
             } else {
                 const resultado = await response.json();

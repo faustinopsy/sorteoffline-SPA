@@ -31,7 +31,14 @@ export default class LocalStorageJS {
         }
         localStorage.setItem(chaveContador, (currentCount - 1).toString());
     }
-
+    excluirTodos(chaveContador, chaveTalao) {
+        let taloes = parseInt(localStorage.getItem(chaveContador));
+        for (let i = 1; i <= taloes; i++) {
+            localStorage.removeItem(`${chaveTalao}_${i}`);
+        }
+        localStorage.setItem(chaveContador, '0');
+    }
+    
     render() {
         
     }
