@@ -23,19 +23,21 @@ export default class AboutScreen {
     atualizaEstiloCabecalho() {
         const cabecalho = document.querySelector('.app-header');
         if (cabecalho) {
-            cabecalho.style.background = 'linear-gradient(to bottom, rgb(0 0 0), #c44bbc, rgb(194 71 187))'; 
-            cabecalho.style.boxShadow = '0 36px 36px 56px rgb(199 86 194)'; 
+            cabecalho.style.background = 'linear-gradient(rgb(0, 0, 0), rgb(68, 131, 88), rgb(94, 194, 127))'; 
+            cabecalho.style.boxShadow = 'rgb(82 195 119) 0px 36px 36px 56px'; 
         }
     }
     render() {
         document.getElementById('titulo').innerHTML='About';
         const menuContainer = document.createElement('div');
         menuContainer.className = 'main';
-        menuContainer.classList.add = 'container';
-        menuContainer.style.height='600px';
+        
+        const mContainer = document.createElement('div');
+        mContainer.className = 'container';
+        mContainer.style.height='600px';
 
         const aboutContent = document.createElement('div');
-        aboutContent.className = 'main about-container';
+        aboutContent.className = 'about-container';
         aboutContent.innerHTML = `
             <h1 data-i18n="aboutTitle">About the App</h1>
             <p data-i18n="aboutDescription">This application is a powerful tool for lottery enthusiasts...</p>
@@ -56,7 +58,8 @@ export default class AboutScreen {
         `;
 
         this.loadLanguage();
-        menuContainer.appendChild(aboutContent);
+        mContainer.appendChild(aboutContent);
+        menuContainer.appendChild(mContainer);
         return {
             element: menuContainer
         };

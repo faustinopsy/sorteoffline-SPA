@@ -128,6 +128,11 @@ export default class GeradorCombinacoes {
         gerarButton.id = 'salvarBtn'
         gerarButton.textContent = 'Gerar';
         gerarButton.addEventListener('click', () => {
+            const selecao = parseInt(this.numerosSelecionados.size) || 0;
+            if(parseInt(selecao) < 16){
+                 this.exibeModal('Selecione ao menos 16 números')
+                return
+            }
             const quantidade = parseInt(inputQuantidade.value) || 0;
             if(quantidade<2){
                 this.exibeModal('Gere ao menos 2 combinações')

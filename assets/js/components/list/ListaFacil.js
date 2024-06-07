@@ -40,12 +40,16 @@ export default class ListaFacil {
     renderList() {
         const containerDiv = document.querySelector('.container');
         containerDiv.innerHTML = ''; 
-        const excluirTodosButton = document.createElement('button');
-        excluirTodosButton.id = 'bclear'
-        excluirTodosButton.textContent = 'Excluir Tudo';
-        excluirTodosButton.addEventListener('click', () => this.excluirTodos());
-    
-        containerDiv.appendChild(excluirTodosButton);
+        if(this.lista.length > 0){
+            const excluirTodosButton = document.createElement('button');
+            excluirTodosButton.id = 'bclear'
+            excluirTodosButton.textContent = 'Excluir Tudo';
+            excluirTodosButton.addEventListener('click', () => this.excluirTodos());
+            containerDiv.appendChild(excluirTodosButton);
+        }else{
+            containerDiv.innerText = 'Nenhum talão cadastrado';
+        }
+        
         this.lista.forEach((text, index) => {
             const list = document.createElement('li');
             list.id = `item-${index}`;

@@ -27,6 +27,7 @@ function mostrarModalNaoFechavel() {
     modal.style.zIndex = '1000';
 
     const modalContent = document.createElement('div');
+    modalContent.style.position = 'relative';
     modalContent.style.backgroundColor = '#fff';
     modalContent.style.padding = '20px';
     modalContent.style.borderRadius = '5px';

@@ -68,7 +68,6 @@ export default class CadFacil {
     
     clearDisplay() {
         this.displayValue = '0';
-        
         document.querySelectorAll('.bolas').forEach(button => {
             button.classList.remove('bolas-selecionadas');
         });
@@ -84,10 +83,9 @@ export default class CadFacil {
         const numerosOrdenadosString = numerosOrdenados.map(num => num < 10 ? '0' + num : num).join(',');
         this.buscalocal = new LocalStorageJS(numerosOrdenadosString);
         this.buscalocal.salvarLoteria('facil', 'lotofacil');
-    
         this.displayValue = '0';
         this.exibeModal();
-        this.updateDisplay();
+        this.clearDisplay();
     }
     exibeModal(){
         Swal.fire({
