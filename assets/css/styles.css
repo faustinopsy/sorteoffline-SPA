@@ -102,7 +102,6 @@ body, html {
     padding: 4px;
     color: white;
     text-align: center;
-    font-size: 24px;
     box-shadow: 0 36px 36px 56px rgb(0, 149, 255);
 }
 
@@ -212,10 +211,10 @@ body, html {
     margin-bottom: 10px;
 }
 #buscaConcursos{
-    width: 90%;
+    width: 200px;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 20px 20px 0 0;
+    border-radius: 20px 0 0 0;
     background-color: #fff;
     color: #007bff;
     box-shadow: 5px 5px 5px #888888;
@@ -341,9 +340,11 @@ a {
     background-color: #2ee00a;
   }
   .sell{
-    background-color: #f93a19;
-    border-radius: 0 0 20px 20px;
-    width: 100%;
+    background-color: #c349bc;
+    border-radius: 0 20px 0 0;
+    width: 200px;
+    border: none;
+    box-shadow: 5px 5px 5px #888888;
   }
   .btn:hover {
     background-color: #2980b9;
@@ -408,4 +409,12 @@ a {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     width: 50%;
     margin-left: 19px;
+}
+.salvarCombinacoes{
+    width: 100%;
+    margin: 30px 0 0;
+    border-radius: 20px 20px 0 0;
+    font-size: 16px;
+    border: none;
+    background-color: #ff50f5;
 }

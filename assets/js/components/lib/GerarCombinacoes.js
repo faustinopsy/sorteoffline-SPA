@@ -85,13 +85,17 @@ export default class GeradorCombinacoes {
         const closeButton = document.createElement('button');
         closeButton.textContent = 'X';
         closeButton.className = 'close-button';
+        closeButton.style.borderRadius = '0 0 0 20px';
+        closeButton.style.top = '0';
+        closeButton.style.right = '0';
+        closeButton.style.backgroundColor = 'rgb(255 80 245 / 0%)';
         closeButton.onclick = () => modal.style.display = 'none';
 
         modalContent.appendChild(closeButton);
 
         const saveButton = document.createElement('button');
         saveButton.textContent = 'Salvar Combinações';
-        saveButton.className = 'salvarBtn';
+        saveButton.className = 'salvarCombinacoes';
         saveButton.addEventListener('click', () => this.salvarCombinacoes(combinacoesSelecionadas));
         modalContent.appendChild(saveButton);
 
