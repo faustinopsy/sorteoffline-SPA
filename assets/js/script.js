@@ -63,16 +63,16 @@ function mostrarModalNaoFechavel() {
 }
 
 
-// if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker
-//       .register('./sw.js')
-//       .then(serviceWorker => {
-//         console.log('Rodando serviço: ' + serviceWorker);
-//       })
-//       .catch(error => {
-//         console.log('Error registering the Service Worker: ' + error);
-//       });
-//   }
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+      .register('./sw.js')
+      .then(serviceWorker => {
+        console.log('Rodando serviço: ' + serviceWorker);
+      })
+      .catch(error => {
+        console.log('Error registering the Service Worker: ' + error);
+      });
+  }
   function registerNotification() {
       Notification.requestPermission(permission => {
           if (permission === 'granted'){ registerBackgroundSync() }
