@@ -18,6 +18,7 @@ export default class ListaFacil {
         if (cabecalho) {
             cabecalho.style.background = 'linear-gradient(to bottom, rgb(0 0 0), #c44bbc, rgb(194 71 187))'; 
             cabecalho.style.boxShadow = '0 36px 36px 56px rgb(199 86 194)'; 
+            //box-shadow: inset -5px -5px 9px rgba(255,255,255,0.45), inset 5px 5px 9px rgba(94,104,121,0.3);
         }
     }
 
@@ -43,6 +44,9 @@ export default class ListaFacil {
         if(this.lista.length > 0){
             const excluirTodosButton = document.createElement('button');
             excluirTodosButton.id = 'bclear'
+            excluirTodosButton.style.backgroundColor = 'rgb(195 73 188)'
+            excluirTodosButton.style.borderRadius = '20px 20px 0 0'
+            excluirTodosButton.style.width = '100%'
             excluirTodosButton.textContent = 'Excluir Tudo';
             excluirTodosButton.addEventListener('click', () => this.excluirTodos());
             containerDiv.appendChild(excluirTodosButton);
@@ -52,11 +56,13 @@ export default class ListaFacil {
         
         this.lista.forEach((text, index) => {
             const list = document.createElement('li');
+            list.className = 'lista-tens'
             list.id = `item-${index}`;
             list.textContent = `Nº ${index + 1} : ${text} `;
 
             const removeButton = document.createElement('button');
-            removeButton.id = 'bclear'
+            removeButton.className = 'limpa-lista'
+            removeButton.id = 'list'
             removeButton.textContent = 'Remover';
             removeButton.addEventListener('click', () => this.removerItem(index));
             

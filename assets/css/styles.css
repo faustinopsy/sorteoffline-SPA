@@ -98,6 +98,7 @@ body, html {
 
 .app-header {
     background: linear-gradient(to bottom, rgb(0, 0, 0), blue, rgb(0, 149, 255));
+    box-shadow: inset -5px -5px 9px rgba(255,255,255,0.45), inset 5px 5px 9px rgba(94,104,121,0.3);
     padding: 4px;
     color: white;
     text-align: center;
@@ -131,7 +132,10 @@ body, html {
 .app-footer button:hover {
     background-color: #ddd;
 }
-
+.app-actions{
+    display: flex;
+    flex-direction: column;
+}
 .app-footer {
     align-items: center;
     text-align: center;
@@ -189,29 +193,33 @@ body, html {
     box-shadow: 5px 5px 5px #888888;
 }
 #combinadisplay {
-    width: 200px;
-    margin-bottom: 10px;
-    text-align: right;
+    width: 90%;
     padding: 10px;
-    margin-left: 10px;
     border: 1px solid #ccc;
-    border-radius: 20px 5px;
+    border-radius: 20px 20px 0 0;
     background-color: #fff;
     color: #007bff;
     box-shadow: 5px 5px 5px #888888;
 }
-#valorTransferencia{
-    font-size: 20px;
-    width: 60%;
+.salvaCombinacoes{
+    background-color: #14ed3f;
+    cursor: pointer;
+    padding: 11px 12px;
+    border-radius: 0 0 20px 20px;
+    text-decoration: none;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    width: 100%;
     margin-bottom: 10px;
-    text-align: right;
+}
+#buscaConcursos{
+    width: 90%;
     padding: 10px;
-    margin-left: -10px;
     border: 1px solid #ccc;
-    border-radius: 20px 5px;
+    border-radius: 20px 20px 0 0;
     background-color: #fff;
     color: #007bff;
     box-shadow: 5px 5px 5px #888888;
+    margin-bottom: 2px;
 }
 #teclado {
     display: grid;
@@ -261,14 +269,16 @@ body, html {
     border-radius: 20px 5px;
     text-decoration: none;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    width: 50%;
 }
 #salvarBtn {
     background-color: #14ed3f;
     cursor: pointer;
     padding: 11px 12px;
-    border-radius: 20px 5px;
+    border-radius: 0 20px 5px;
     text-decoration: none;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    width: 50%;
 }
 
 
@@ -332,6 +342,8 @@ a {
   }
   .sell{
     background-color: #f93a19;
+    border-radius: 0 0 20px 20px;
+    width: 100%;
   }
   .btn:hover {
     background-color: #2980b9;
@@ -380,4 +392,20 @@ a {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+.lista-tens{
+    display: flex;
+    box-shadow: inset -5px -5px 9px rgba(255,255,255,0.45), inset 5px 5px 9px rgba(94,104,121,0.3);
+    list-style: none;
+    border-radius: 20px 5px;
+}
+.limpa-lista{
+    background-color: rgb(195 73 188);
+    cursor: pointer;
+    padding: 11px 12px;
+    border-radius: 20px 5px;
+    text-decoration: none;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    width: 50%;
+    margin-left: 19px;
 }

@@ -71,7 +71,7 @@ export default class ConfereFacil {
         this.meusnumeros = this.buscalocal.listaLoteria('facil', 'lotofacil');
     
         const divnova = document.querySelector('.container');
-        const input = document.querySelector('#valorTransferencia');
+        const input = document.querySelector('#buscaConcursos');
         const botao = document.querySelector('.sell');
         divnova.innerHTML = '';
         divnova.appendChild(input);
@@ -117,7 +117,7 @@ export default class ConfereFacil {
         this.assetInput = document.createElement('input');
         this.assetInput.setAttribute('type', 'text');
         this.assetInput.setAttribute('placeholder', 'Nº Concurso');
-        this.assetInput.id ='valorTransferencia';
+        this.assetInput.id ='buscaConcursos';
         this.assetInput.required = true;
         actionsDiv.appendChild(this.assetInput);
 

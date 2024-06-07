@@ -3,9 +3,11 @@ let setupButton;
 history.pushState(null, document.title, location.href);
 
 document.addEventListener('DOMContentLoaded', () => {
-    //if (!isMobileDevice()) {
-        mostrarModalNaoFechavel();
-    //}
+        const acesso = localStorage.getItem('acesso') ? true : false;
+         if(!acesso){
+           mostrarModalNaoFechavel();
+           localStorage.setItem('acesso',true)
+         }
 });
 
 function isMobileDevice() {
@@ -48,8 +50,6 @@ function mostrarModalNaoFechavel() {
         document.body.removeChild(modal);
     };
 
-    
-    
     modalContent.innerHTML += `
         <h2>🚀 Embarque na Aventura!</h2>
         <p>Olá, esse app é para você gerenciar seus jogos de loteria.</p>
@@ -63,25 +63,25 @@ function mostrarModalNaoFechavel() {
 }
 
 
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-      .register('./sw.js')
-      .then(serviceWorker => {
-        console.log('Rodando serviÃ§o: ' + serviceWorker);
-      })
-      .catch(error => {
-        console.log('Error registering the Service Worker: ' + error);
-      });
-  }
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker
+//       .register('./sw.js')
+//       .then(serviceWorker => {
+//         console.log('Rodando serviço: ' + serviceWorker);
+//       })
+//       .catch(error => {
+//         console.log('Error registering the Service Worker: ' + error);
+//       });
+//   }
   function registerNotification() {
       Notification.requestPermission(permission => {
           if (permission === 'granted'){ registerBackgroundSync() }
-          else console.error("Sem permissÃ£o.")
+          else console.error("Sem permissão.")
       })
   }
   function registerBackgroundSync() {
       if (!navigator.serviceWorker){
-          return console.error("ServiÃ§o nÃ£o suportado")
+          return console.error("Serviço não suportado")
       }
       navigator.serviceWorker.ready
       .then(registration => registration.sync.register('syncAttendees'))
@@ -109,9 +109,9 @@ if ('serviceWorker' in navigator) {
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {
             if (choiceResult.outcome === 'accepted') {
-                console.log('UsuÃ¡rio aceitou a instalaÃ§Ã£o do PWA');
+                console.log('aceitou o PWA');
             } else {
-                console.log('UsuÃ¡rio recusou a instalaÃ§Ã£o do PWA');
+                console.log('não aceitou PWA');
             }
             deferredPrompt = null;
             installModal.style.display = 'none';
@@ -123,20 +123,7 @@ if ('serviceWorker' in navigator) {
     });
 });
 
-  function installApp() {
-      deferredPrompt.prompt();
-      setupButton.disabled = true;
-      deferredPrompt.userChoice
-          .then((choiceResult) => {
-              if (choiceResult.outcome === 'accepted') {
-                  console.log('PWA setup accepted');
-                  setupButton.style.display = 'none';
-              } else {
-                  console.log('PWA setup rejected');
-              }
-              deferredPrompt = null;
-          });
-  }
+
   window.addEventListener('appinstalled', (evt) => {
       console.log("appinstalled fired", evt);
   });

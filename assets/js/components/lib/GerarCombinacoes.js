@@ -125,7 +125,7 @@ export default class GeradorCombinacoes {
         inputQuantidade.placeholder = 'Quantidade de combinações';
         containerDiv.appendChild(inputQuantidade);
         const gerarButton = document.createElement('button');
-        gerarButton.id = 'salvarBtn'
+        gerarButton.className = 'salvaCombinacoes'
         gerarButton.textContent = 'Gerar';
         gerarButton.addEventListener('click', () => {
             const selecao = parseInt(this.numerosSelecionados.size) || 0;

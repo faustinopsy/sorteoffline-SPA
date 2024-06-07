@@ -1,4 +1,4 @@
-const CACHE_NAME = 'v001';
+const CACHE_NAME = 'v002';
 const STATIC_CACHE_URLS = [
  'index.html', 
  'manifest.json', 
@@ -34,42 +34,46 @@ const STATIC_CACHE_URLS = [
  'assets/img/nmega.png',
  ];
 
+ self.addEventListener('activate', event => {
+  const cacheWhitelist = [CACHE_NAME]; 
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName); 
+          }
+        })
+      );
+    })
+  );
+});
+
 self.addEventListener('fetch', event => {
-event.respondWith(
-  caches.match(event.request)
-    .then(response => {
-      if (response) {
-        return response;
-      }
-      return fetch(event.request);
-    })
-);
-});
-
-self.addEventListener('install', event => {
-event.waitUntil(
-  caches.open(CACHE_NAME)
-    .then(cache => {
-      console.log('Cache aberto');
-      return cache.addAll(STATIC_CACHE_URLS);
-    })
-);
-});
-
-self.addEventListener('activate', event => {
-const cacheWhitelist = [CACHE_NAME]; 
-event.waitUntil(
-  caches.keys().then(cacheNames => {
-    return Promise.all(
-      cacheNames.map(cacheName => {
-        if (cacheWhitelist.indexOf(cacheName) === -1) {
-          return caches.delete(cacheName); 
-        }
+  event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
+          if (cachedResponse) {
+              return cachedResponse;
+          }
+          return fetch(event.request).then(networkResponse => {
+              if (networkResponse.ok) {
+                  return caches.open(CACHE_NAME).then(cache => {
+                      cache.put(event.request, networkResponse.clone());
+                      return networkResponse;
+                  });
+              }
+              return caches.match('index.html'); 
+          }).catch(() => {
+              return caches.match('index.html'); 
+          });
+      }).catch(() => {
+          return caches.match('index.html'); 
       })
-    );
-  })
-);
+  );
 });
+
+
+
 
 
 
