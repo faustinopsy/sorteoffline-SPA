@@ -192,7 +192,7 @@ body, html {
     box-shadow: 5px 5px 5px #888888;
 }
 #combinadisplay {
-    width: 90%;
+    width: 94%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 20px 20px 0 0;
@@ -211,14 +211,14 @@ body, html {
     margin-bottom: 10px;
 }
 #buscaConcursos{
-    width: 200px;
+    width: 94%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 20px 0 0 0;
+    border-radius: 20px 20px 0 0;
     background-color: #fff;
     color: #007bff;
     box-shadow: 5px 5px 5px #888888;
-    margin-bottom: 2px;
+    margin-bottom: 0;
 }
 #teclado {
     display: grid;
@@ -265,7 +265,7 @@ body, html {
     background-color: #dc3545;
     cursor: pointer;
     padding: 11px 12px;
-    border-radius: 20px 5px;
+    border-radius: 20px 20px 0 0;
     text-decoration: none;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     width: 50%;
@@ -274,10 +274,11 @@ body, html {
     background-color: #14ed3f;
     cursor: pointer;
     padding: 11px 12px;
-    border-radius: 0 20px 5px;
+    border-radius: 0 0 20px 20px;
     text-decoration: none;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     width: 50%;
+    margin-bottom: 16px
 }
 
 
@@ -305,7 +306,12 @@ a {
 }
 
   .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 2px 16px;
+    width: 600px;
+
   }
 
 
@@ -341,10 +347,13 @@ a {
   }
   .sell{
     background-color: #c349bc;
-    border-radius: 0 20px 0 0;
-    width: 200px;
-    border: none;
-    box-shadow: 5px 5px 5px #888888;
+    cursor: pointer;
+    padding: 11px 12px;
+    border-radius: 0 0 20px 20px;
+    text-decoration: none;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    margin-bottom: 10px;
   }
   .btn:hover {
     background-color: #2980b9;
@@ -417,4 +426,5 @@ a {
     font-size: 16px;
     border: none;
     background-color: #ff50f5;
+    cursor: pointer;
 }

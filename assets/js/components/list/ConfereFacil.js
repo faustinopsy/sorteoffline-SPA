@@ -83,6 +83,7 @@ export default class ConfereFacil {
                               <br> Sorteio: ${this.lista.listaDezenas}`;
     
         const conteudoDiv = document.createElement('div');
+        conteudoDiv.className = 'lista-tens'
         conteudoDiv.innerHTML = conteudoNovo;
         divnova.appendChild(conteudoDiv);
     
@@ -92,6 +93,7 @@ export default class ConfereFacil {
     
             const list = document.createElement('p');
             list.id = index + 1;
+            list.className = 'lista-tens'
             list.innerHTML = `<br>Talão <b>${index + 1}: ${numeros} </b>- Acertos: ${acertos}<br>`;
             divnova.appendChild(list);
         });
