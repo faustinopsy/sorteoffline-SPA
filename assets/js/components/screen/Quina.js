@@ -2,9 +2,9 @@ export default class QuinaScreen {
   constructor(navigateCallback,lang) {
       this.navigateCallback = navigateCallback;
       this.menuItems = [
-          { href: "conferir", icon: "assets/img/conf.png", text: "CONFERIR", id: "1-0" },
-          { href: "listar", icon: "assets/img/list.png", text: "LISTAR", id: "1-1" },
-          { href: "cadastrar", icon: "assets/img/cad.png", text: "CADASTRAR", id: "0-2" },
+          { href: "conferirquina", icon: "assets/img/conf.png", text: "CONFERIR", id: "1-0" },
+          { href: "listarquina", icon: "assets/img/list.png", text: "LISTAR", id: "1-1" },
+          { href: "cadquina", icon: "assets/img/cad.png", text: "CADASTRAR", id: "0-2" },
       ];
       this.userLanguage = lang; 
       this.loadLanguage();
@@ -34,7 +34,7 @@ export default class QuinaScreen {
       }
   }
   render() {
-      document.getElementById('titulo').innerHTML = 'Quina <br> em construção';
+      document.getElementById('titulo').innerHTML = 'Quina';
       const menuContainer = document.createElement('div');
       menuContainer.className = 'main';
       menuContainer.classList.add = 'container';

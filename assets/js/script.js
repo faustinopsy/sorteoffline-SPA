@@ -5,7 +5,7 @@ history.pushState(null, document.title, location.href);
 document.addEventListener('DOMContentLoaded', () => {
         const acesso = localStorage.getItem('acesso') ? true : false;
          if(!acesso){
-           mostrarModalNaoFechavel();
+           //mostrarModalNaoFechavel();
            localStorage.setItem('acesso',true)
          }
 });
