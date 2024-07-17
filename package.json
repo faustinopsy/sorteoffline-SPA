@@ -1,0 +1,20 @@
+{
+  "name": "sorteoffline",
+  "version": "1.0.0",
+  "description": "O Gerenciador Offline de Loterias é uma ferramenta robusta desenvolvida para entusiastas de loterias que preferem gerenciar suas apostas de maneira offline. Este aplicativo oferece um conjunto de funcionalidades que permitem aos usuários armazenar combinações de jogos, verificar rapidamente os resultados e gerar combinações potenciais de ganho, tudo acessível sem a necessidade de uma conexão com a internet.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@capacitor/android": "^6.1.1",
+    "@capacitor/cli": "^6.1.1",
+    "@capacitor/core": "^6.1.1"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5"
+  }
+}

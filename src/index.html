@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta name="description" content="offcoin: Uma solução inovadora para transações financeiras em áreas com conectividade limitada. Nossa moeda digital offline garante operações seguras e contínuas, mesmo sem acesso à internet.">
+    <meta name="keywords" content="Moeda Offline, Transações Sem Internet, Pagamento Digital, Tecnologia NFC, Solução de Conectividade, Moeda Digital, Finanças Independentes, Pagamento Offline">
+	<link rel="canonical" href="https://app.sorteoffline.com">
+	<meta property="og:locale" content="pt-BR">
+	<meta property="og:type" content="webapp">
+	<meta property="og:url" content="https://app.sorteoffline.com/">
+	<meta property="og:site_name" content="OffLineCoin">
+	<meta name="author" content="Rodrigo Faustino">
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="assets/js/script.js"></script>
+    <!-- <script src="js/chart.js"></script> -->
+    <link rel="stylesheet" href="assets/css/styles.css" type="text/css" />
+	<meta name="theme-color" content="#000000">
+	<link rel="manifest" href="./manifest.json">
+    <link rel="sortcut icon" href="./favicon.ico" type="image/jpg">
+    <title>OffCoin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="assets/js/sweetalert2.11.js"></script>
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'none';
+    script-src 'self' 'unsafe-inline';
+    img-src 'self' data:;
+    style-src 'self' 'unsafe-inline';
+    font-src 'self';
+    connect-src 'self' https://servicebus2.caixa.gov.br;
+    worker-src 'self';
+    manifest-src 'self';
+    child-src 'none';
+    upgrade-insecure-requests;
+"> 
+</head>
+<body>
+    <header class="app-header">
+        <h1>sorteoffline</h1>
+        <div class="app-balance">
+            <span id="titulo"></span>
+        </div>
+    </header>
+  <div id="app"></div>
+  <script type="module" src="assets/js/App.js"></script>
+</body>
+</html>
