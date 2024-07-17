@@ -17,6 +17,10 @@ import ListaSena from './components/list/ListaSena.js';
 import CadSena from './components/cad/CadSena.js';
 import ConfereSena from './components/list/ConfereSena.js';
 
+import ListaMania from './components/list/ListaMania.js';
+import CadMania from './components/cad/CadMania.js';
+import ConfereMania from './components/list/ConfereMania.js';
+
 class App {
     constructor() {
         this.appElement = document.getElementById('app');
@@ -72,6 +76,9 @@ class App {
             case 'cadsena': return new CadSena();
             case 'listarsena': return new ListaSena();
             case 'conferirsena': return new ConfereSena();
+            case 'cadmania': return new CadMania();
+            case 'listarmania': return new ListaMania();
+            case 'conferirmania': return new ConfereMania();
             
             case 'conferefacil': return new ConfereFacil();
             case 'combinacoesFacil': return new GeradorCombinacoes();

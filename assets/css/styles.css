@@ -191,6 +191,20 @@ body, html {
     color: #007bff;
     box-shadow: 5px 5px 5px #888888;
 }
+#displaymania{
+    font-size: 2em;
+    width: 270px;
+    height: 424px;
+    margin-bottom: 10px;
+    text-align: right;
+    padding: 10px;
+    margin-left: -10px;
+    border: 1px solid #ccc;
+    border-radius: 20px 5px;
+    background-color: #fff;
+    color: #007bff;
+    box-shadow: 5px 5px 5px #888888;
+}
 #combinadisplay {
     width: 94%;
     padding: 10px;
@@ -402,6 +416,11 @@ a {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+li{
+    width: 100%;
+    word-wrap: break-word;
+    word-break: break-all
 }
 .lista-tens{
     display: flex;
