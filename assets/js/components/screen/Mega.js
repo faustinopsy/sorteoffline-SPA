@@ -34,7 +34,7 @@ export default class MegaScreen {
       }
   }
   render() {
-      document.getElementById('titulo').innerHTML='Mega-Sena <br> em construção';
+      document.getElementById('titulo').innerHTML='Mega-Sena';
       const menuContainer = document.createElement('div');
       menuContainer.className = 'main';
       menuContainer.classList.add = 'container';

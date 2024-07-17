@@ -16,9 +16,8 @@ export default class ListaQuina {
     atualizaEstiloCabecalho() {
         const cabecalho = document.querySelector('.app-header');
         if (cabecalho) {
-            cabecalho.style.background = 'linear-gradient(to bottom, rgb(0 0 0), #c44bbc, rgb(194 71 187))'; 
-            cabecalho.style.boxShadow = '0 36px 36px 56px rgb(199 86 194)'; 
-            //box-shadow: inset -5px -5px 9px rgba(255,255,255,0.45), inset 5px 5px 9px rgba(94,104,121,0.3);
+            cabecalho.style.background = 'linear-gradient(rgb(0, 0, 0), rgb(63 98 230), rgb(47 118 200))'; 
+            cabecalho.style.boxShadow = 'rgb(47 118 200) 0px 36px 36px 56px'; 
         }
     }
 

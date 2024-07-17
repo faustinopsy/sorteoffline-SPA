@@ -16,9 +16,8 @@ export default class ListaSena {
     atualizaEstiloCabecalho() {
         const cabecalho = document.querySelector('.app-header');
         if (cabecalho) {
-            cabecalho.style.background = 'linear-gradient(to bottom, rgb(0 0 0), #c44bbc, rgb(194 71 187))'; 
-            cabecalho.style.boxShadow = '0 36px 36px 56px rgb(199 86 194)'; 
-            //box-shadow: inset -5px -5px 9px rgba(255,255,255,0.45), inset 5px 5px 9px rgba(94,104,121,0.3);
+            cabecalho.style.background = 'linear-gradient(rgb(0, 0, 0), rgb(82 196 75), rgb(71 194 117))'; 
+            cabecalho.style.boxShadow = 'rgb(79 194 99) 0px 36px 36px 56px'; 
         }
     }
 
