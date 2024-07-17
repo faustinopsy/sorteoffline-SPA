@@ -13,6 +13,10 @@ import MegaScreen from './components/screen/Mega.js';
 import QuinaScreen from './components/screen/Quina.js';
 import GeradorCombinacoes from './components/lib/GerarCombinacoes.js';
 
+import ListaSena from './components/list/ListaSena.js';
+import CadSena from './components/cad/CadSena.js';
+import ConfereSena from './components/list/ConfereSena.js';
+
 class App {
     constructor() {
         this.appElement = document.getElementById('app');
@@ -65,6 +69,9 @@ class App {
             case 'listafacil': return new ListaFacil();
             case 'listarquina': return new ListaQuina();
             case 'conferirquina': return new ConfereQuina();
+            case 'cadsena': return new CadSena();
+            case 'listarsena': return new ListaSena();
+            case 'conferirsena': return new ConfereSena();
             
             case 'conferefacil': return new ConfereFacil();
             case 'combinacoesFacil': return new GeradorCombinacoes();

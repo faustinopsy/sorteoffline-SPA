@@ -1,5 +1,5 @@
 import  LocalStorageJS  from '../lib/LocalStorage.js';
-export default class ListaQuina {
+export default class ListaSena {
     constructor() {
         this.displayValue = '0'
         this.buscalocal = null;
@@ -24,17 +24,17 @@ export default class ListaQuina {
 
     Listar() {
         this.buscalocal = new LocalStorageJS(this.displayValue);
-        this.lista = this.buscalocal.listaLoteria('quina', 'lotoquina');
+        this.lista = this.buscalocal.listaLoteria('sena', 'lotosena');
     }
 
     removerItem(index) {
-        this.buscalocal.removerItemLoteria('quina', 'lotoquina', index);
+        this.buscalocal.removerItemLoteria('sena', 'lotosena', index);
         this.Listar();
         this.renderList();
     }
     excluirTodos(){
         this.buscalocal = new LocalStorageJS();
-        this.buscalocal.excluirTodos('quina', 'lotoquina');
+        this.buscalocal.excluirTodos('sena', 'lotosena');
         this.Listar();
         this.renderList();
     }
@@ -59,13 +59,11 @@ export default class ListaQuina {
             list.className = 'lista-tens'
             list.id = `item-${index}`;
             list.textContent = `Nº ${index + 1} : ${text} `;
-
             const removeButton = document.createElement('button');
             removeButton.className = 'limpa-lista'
             removeButton.id = 'list'
             removeButton.textContent = 'Remover';
             removeButton.addEventListener('click', () => this.removerItem(index));
-            
             list.appendChild(removeButton);
             containerDiv.appendChild(list);
         });
@@ -79,7 +77,6 @@ export default class ListaQuina {
         const tecladoDiv = document.createElement('div');
         tecladoDiv.id = 'teclado'; 
         containerDiv.appendChild(tecladoDiv);
-        
         mainDiv.appendChild(containerDiv);
 
         return {

@@ -2,9 +2,9 @@ export default class MegaScreen {
   constructor(navigateCallback,lang) {
       this.navigateCallback = navigateCallback;
       this.menuItems = [
-          { href: "conferir", icon: "assets/img/conf.png", text: "CONFERIR", id: "1-0" },
-          { href: "listar", icon: "assets/img/list.png", text: "LISTAR", id: "1-1" },
-          { href: "cadastrar", icon: "assets/img/cad.png", text: "CADASTRAR", id: "0-2" },
+          { href: "conferirsena", icon: "assets/img/conf.png", text: "CONFERIR", id: "1-0" },
+          { href: "listarsena", icon: "assets/img/list.png", text: "LISTAR", id: "1-1" },
+          { href: "cadsena", icon: "assets/img/cad.png", text: "CADASTRAR", id: "0-2" },
       ];
       this.userLanguage = lang; 
       this.loadLanguage();
