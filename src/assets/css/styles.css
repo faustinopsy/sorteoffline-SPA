@@ -400,16 +400,17 @@ a {
     padding: 20px;
     border: 1px solid #888;
     border-radius: 20px 5px;
-    width: 473px;
+    width: 300px;
     color: white;
 }
 
 .close-button {
+    position: absolute;
     color: #ff0e0e;
     font-size: 20px;
     font-weight: bold;
-    position: absolute;
-    left: 444px;
+    left: 310px;
+    top: 0px;
 }
 
 .close-button:hover,
@@ -425,9 +426,15 @@ li{
 }
 .lista-tens{
     display: flex;
-    box-shadow: inset -5px -5px 9px rgba(255,255,255,0.45), inset 5px 5px 9px rgba(94,104,121,0.3);
+    box-shadow: inset -5px -5px 9px rgba(255, 255, 255, 0.45), inset 5px 5px 9px rgba(94, 104, 121, 0.3);
     list-style: none;
     border-radius: 20px 5px;
+    width: 100%;
+    padding: 5px;
+    align-items: baseline;
+    word-wrap: break-word;
+    word-break: break-all;
+    flex-direction: column;
 }
 .limpa-lista{
     background-color: rgb(195 73 188);
