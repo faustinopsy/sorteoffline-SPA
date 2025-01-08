@@ -11,8 +11,10 @@ import ConfereFacil from './components/list/ConfereFacil.js';
 import ConfereQuina from './components/list/ConfereQuina.js';
 import MegaScreen from './components/screen/Mega.js';
 import QuinaScreen from './components/screen/Quina.js';
-import GeradorCombinacoes from './components/lib/GerarCombinacoes.js';
 
+import CombinaFacil from './components/combinacoes/CombinaFacil.js';
+import CombinaSena from './components/combinacoes/CombinaSena.js';
+import CombinaQuina from './components/combinacoes/CombinaQuina.js';
 import ListaSena from './components/list/ListaSena.js';
 import CadSena from './components/cad/CadSena.js';
 import ConfereSena from './components/list/ConfereSena.js';
@@ -81,7 +83,9 @@ class App {
             case 'conferirmania': return new ConfereMania();
             
             case 'conferefacil': return new ConfereFacil();
-            case 'combinacoesFacil': return new GeradorCombinacoes();
+            case 'combinacoesFacil': return new CombinaFacil();
+            case 'combinacoesQuina': return new CombinaQuina();
+            case 'combinacoesSena': return new CombinaSena();
             default: return null;
         }
     }

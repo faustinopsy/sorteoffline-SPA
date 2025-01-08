@@ -5,6 +5,7 @@ export default class QuinaScreen {
           { href: "conferirquina", icon: "assets/img/conf.png", text: "CONFERIR", id: "1-0" },
           { href: "listarquina", icon: "assets/img/list.png", text: "LISTAR", id: "1-1" },
           { href: "cadquina", icon: "assets/img/cad.png", text: "CADASTRAR", id: "0-2" },
+          { href: "combinacoesQuina", icon: "assets/img/combina.png", text: "COMBINACAO", id: "0-2" },
       ];
       this.userLanguage = lang; 
       this.loadLanguage();

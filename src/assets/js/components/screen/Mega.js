@@ -5,6 +5,7 @@ export default class MegaScreen {
           { href: "conferirsena", icon: "assets/img/conf.png", text: "CONFERIR", id: "1-0" },
           { href: "listarsena", icon: "assets/img/list.png", text: "LISTAR", id: "1-1" },
           { href: "cadsena", icon: "assets/img/cad.png", text: "CADASTRAR", id: "0-2" },
+          { href: "combinacoesSena", icon: "assets/img/combina.png", text: "COMBINACAO", id: "0-2" },
       ];
       this.userLanguage = lang; 
       this.loadLanguage();

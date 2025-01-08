@@ -55,7 +55,24 @@ export default class AboutScreen {
                 <li data-i18n="featureCustomizeUI">Customizable user interface based on language preferences</li>
             </ul>
             <p data-i18n="closingRemark">Our application is designed to enhance your lottery experience...</p>
-        `;
+        <h2>Avaliação de Limites:</h2>
+            <p>Combinações de 15 números dentre 25:</p>
+
+            <p>Número de combinações possíveis: </p>
+            <p>(25-15)=3.268.760</p>
+            <p>Isso é um número considerável de combinações que pode levar a um uso substancial de memória.</p>
+            <p>Combinações de 6 números dentre 60:</p>
+
+            <p>Número de combinações possíveis: </p>
+            <p>(60-6)=50.063.860</p>
+            <p>Este é um número ainda maior de combinações, provavelmente impraticável para geração e armazenamento no navegador.</p>
+            <p>Combinações de 5 números dentre 80:</p>
+
+            <p>Número de combinações possíveis: </p>
+            <p>(80-5)=24.040.016</p>
+            <p>Ainda um número muito grande de combinações.</p>
+        
+            `;
 
         this.loadLanguage();
         mContainer.appendChild(aboutContent);

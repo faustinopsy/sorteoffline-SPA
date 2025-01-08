@@ -285,7 +285,7 @@ body, html {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     width: 50%;
 }
-#salvarBtn {
+#colocarnocarrinho {
     background-color: #14ed3f;
     cursor: pointer;
     padding: 11px 12px;
@@ -393,6 +393,9 @@ a {
 }
 
 .modal-content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     position: relative;
     background-color: #752c7138;
     backdrop-filter: blur(20px);

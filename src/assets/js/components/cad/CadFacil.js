@@ -21,11 +21,11 @@ export default class CadFacil {
     bindEvents() {
         document.getElementById('bclear').addEventListener('click', () => this.clearDisplay());
         document.querySelectorAll('.bolas').forEach(button => {
-            if (button.id !== 'carregar' && button.id !== 'bclear' && button.id !== 'salvarBtn') {
+            if (button.id !== 'carregar' && button.id !== 'bclear' && button.id !== 'colocarnocarrinho') {
                 button.addEventListener('click', () => this.pressButton(button.textContent));
             }
         });
-        document.getElementById('salvarBtn').addEventListener('click', () => this.salvar());
+        document.getElementById('colocarnocarrinho').addEventListener('click', () => this.salvar());
     }
 
     pressButton(num) {
@@ -33,11 +33,11 @@ export default class CadFacil {
         const index = numerosSelecionados.indexOf(num);
         if (index > -1) {
             numerosSelecionados.splice(index, 1);
-            document.getElementById(`btn-${num}`).classList.remove('bolas-selecionadas');
+            document.getElementById(`n${num}`).classList.remove('bolas-selecionadas');
         } else {
             if (numerosSelecionados.length < 15) {
                 numerosSelecionados.push(num);
-                document.getElementById(`btn-${num}`).classList.add('bolas-selecionadas');
+                document.getElementById(`n${num}`).classList.add('bolas-selecionadas');
             }
         }
     
@@ -46,7 +46,7 @@ export default class CadFacil {
     }
     
     updateDisplay() {
-        const salvarBtn = document.getElementById('salvarBtn');
+        const salvarBtn = document.getElementById('colocarnocarrinho');
         const numerosSelecionados = this.displayValue.split(',');
         salvarBtn.disabled = numerosSelecionados.length !== 15 || this.displayValue === '0';
         const numerosOrdenados = this.displayValue.split(',')
@@ -134,10 +134,10 @@ export default class CadFacil {
             '21', '22', '23', '24', '25'
         ];
         buttons.forEach((text, index) => {
-            const button = document.createElement('button');
+            const button = document.createElement('a');
             button.className = 'bolas';
             button.textContent = text;
-            button.id = `btn-${text}`;
+            button.id = `n${text}`;
             tecladoDiv.appendChild(button);
 
             if ((index + 1) % 25 === 0) {
@@ -153,7 +153,7 @@ export default class CadFacil {
         
         if (text === '🗑️') buttonc.id = 'bclear';
         if (text === '💾') {
-            buttonc.id = 'salvarBtn';
+            buttonc.id = 'colocarnocarrinho';
             buttonc.disabled = true;
         }
         containerDiv.appendChild(buttonc);

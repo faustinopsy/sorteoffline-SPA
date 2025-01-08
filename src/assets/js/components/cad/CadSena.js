@@ -21,11 +21,11 @@ export default class CadSena {
     bindEvents() {
         document.getElementById('bclear').addEventListener('click', () => this.clearDisplay());
         document.querySelectorAll('.bolas').forEach(button => {
-            if (button.id !== 'carregar' && button.id !== 'bclear' && button.id !== 'salvarBtn') {
+            if (button.id !== 'carregar' && button.id !== 'bclear' && button.id !== 'colocarnocarrinho') {
                 button.addEventListener('click', () => this.pressButton(button.textContent));
             }
         });
-        document.getElementById('salvarBtn').addEventListener('click', () => this.salvar());
+        document.getElementById('colocarnocarrinho').addEventListener('click', () => this.salvar());
     }
 
     pressButton(num) {
@@ -33,11 +33,11 @@ export default class CadSena {
         const index = numerosSelecionados.indexOf(num);
         if (index > -1) {
             numerosSelecionados.splice(index, 1);
-            document.getElementById(`btn-${num}`).classList.remove('bolas-selecionadas');
+            document.getElementById(`n${num}`).classList.remove('bolas-selecionadas');
         } else {
             if (numerosSelecionados.length < 6) {
                 numerosSelecionados.push(num);
-                document.getElementById(`btn-${num}`).classList.add('bolas-selecionadas');
+                document.getElementById(`n${num}`).classList.add('bolas-selecionadas');
             }
         }
     
@@ -46,7 +46,7 @@ export default class CadSena {
     }
     
     updateDisplay() {
-        const salvarBtn = document.getElementById('salvarBtn');
+        const salvarBtn = document.getElementById('colocarnocarrinho');
         const numerosSelecionados = this.displayValue.split(',');
         salvarBtn.disabled = numerosSelecionados.length !== 6 || this.displayValue === '0';
         const numerosOrdenados = this.displayValue.split(',')
@@ -141,7 +141,7 @@ export default class CadSena {
             const button = document.createElement('button');
             button.className = 'bolas';
             button.textContent = text;
-            button.id = `btn-${text}`;
+            button.id = `n${text}`;
             tecladoDiv.appendChild(button);
 
             if ((index + 1) % 60 === 0) {
@@ -157,7 +157,7 @@ export default class CadSena {
         
         if (text === '🗑️') buttonc.id = 'bclear';
         if (text === '💾') {
-            buttonc.id = 'salvarBtn';
+            buttonc.id = 'colocarnocarrinho';
             buttonc.disabled = true;
         }
         containerDiv.appendChild(buttonc);

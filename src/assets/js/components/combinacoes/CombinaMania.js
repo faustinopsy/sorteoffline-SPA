@@ -1,4 +1,4 @@
-import LocalStorageJS from './LocalStorage.js';
+import LocalStorageJS from '../lib/LocalStorage.js';
 
 export default class GeradorCombinacoes {
     constructor() {

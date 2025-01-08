@@ -8,7 +8,7 @@
     "CADASTRAR": "Cadastrar",
     "COMBINACAO": "Combinações",
     "ABOUT": "About",
-    "aboutDescription": "This application is a powerful tool for lottery enthusiasts, providing features such as number combination generation and lottery result analysis.",
+    "aboutDescription": "This application is a powerful tool for lottery enthusiasts, providing features such as number combination generation and lottery result analysis. Please note that due to device memory consumption, the maximum number of combinations generated is limited to 1000. By selecting the right numbers, combinations will be generated with appropriate distribution and combination.",    
     "technologiesUsed": "Technologies Used:",
     "techHTMLCSS": "HTML5 & CSS3 for layout and styling",
     "techJavaScript": "JavaScript for interactivity",

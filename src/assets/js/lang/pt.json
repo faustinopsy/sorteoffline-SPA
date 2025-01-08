@@ -8,7 +8,7 @@
     "CADASTRAR": "Cadastrar",
     "COMBINACAO": "Combinações",
     "ABOUT": "O que é",
-    "aboutDescription": "Este aplicativo é uma ferramenta poderosa para entusiastas da loteria, oferecendo recursos como geração de combinações de números e análise de resultados de loterias.",
+    "aboutDescription": "Este aplicativo é uma ferramenta poderosa para entusiastas da loteria, oferecendo recursos como geração de combinações de números e análise de resultados de loterias. Note que, devido ao consumo de memória do dispositivo, o número máximo de combinações geradas é limitado a 1000. Ao escolher os números certos, as combinações serão geradas com distribuição e combinação adequadas.",
     "technologiesUsed": "Tecnologias Utilizadas:",
     "techHTMLCSS": "HTML5 & CSS3 para layout e estilização",
     "techJavaScript": "JavaScript para interatividade",

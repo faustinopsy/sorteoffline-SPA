@@ -1,8 +1,9 @@
-import  BuscaApi  from '../lib/BuscaApi.js';
-import  LocalStorageJS  from '../lib/LocalStorage.js';
+import BuscaApi from '../lib/BuscaApi.js';
+import LocalStorageJS from '../lib/LocalStorage.js';
+
 export default class ConfereSena {
     constructor() {
-        this.displayValue = '0'
+        this.displayValue = '0';
         this.buscalocal = null;
         this.lista = null;
         this.assetInput = null;
@@ -35,35 +36,36 @@ export default class ConfereSena {
                 this.exibeModal(); 
             }
         });
-    
     }
     
-    exibeModal(){
+    exibeModal() {
         Swal.fire({
-            title: "Preench um número busca.",
+            title: "Preencha um número para busca.",
             showClass: {
-              popup: `
-                animate__animated
-                animate__fadeInUp
-                animate__faster
-              `
+                popup: `
+                    animate__animated
+                    animate__fadeInUp
+                    animate__faster
+                `
             },
             hideClass: {
-              popup: `
-                animate__animated
-                animate__fadeOutDown
-                animate__faster
-              `
+                popup: `
+                    animate__animated
+                    animate__fadeOutDown
+                    animate__faster
+                `
             }
-          });
+        });
     }
+
     comparaNumeros(meusnumeros, numerosSorteados) {
         const numerosAcertados = meusnumeros.filter(numero => numerosSorteados.includes(numero));
         return numerosAcertados.length; 
     }
+
     async Listar() {
         let numero = this.assetInput.value;
-        this.busca = new BuscaApi(numero,'megasena');
+        this.busca = new BuscaApi(numero, 'megasena');
         this.lista = await this.busca.buscaResultadosAPI();
         const numerosSorteados = this.lista.listaDezenas.map(Number);
     
@@ -83,23 +85,31 @@ export default class ConfereSena {
                               <br> Sorteio: ${this.lista.listaDezenas}`;
     
         const conteudoDiv = document.createElement('div');
-        conteudoDiv.className = 'lista-tens'
+        conteudoDiv.className = 'lista-tens';
         conteudoDiv.innerHTML = conteudoNovo;
         divnova.appendChild(conteudoDiv);
-        this.meusnumeros.forEach((numeros, index) => {
+    
+        // Array para armazenar os talões com seus respectivos acertos
+        const taloesAcertos = this.meusnumeros.map((numeros, index) => {
             const meustaloes = numeros.split(',').map(Number);
             const acertos = this.comparaNumeros(meustaloes, numerosSorteados);
+            return { numeros, acertos, index };
+        });
+    
+        // Ordenar os talões por acertos de forma decrescente
+        taloesAcertos.sort((a, b) => b.acertos - a.acertos);
+    
+        // Renderizar os talões ordenados
+        taloesAcertos.forEach(talao => {
             const list = document.createElement('p');
-            list.id = index + 1;
-            list.className = 'lista-tens'
-            list.innerHTML = `<br>Talão <b>${index + 1}: ${numeros} </b>- Acertos: ${acertos}<br>`;
+            list.id = talao.index + 1;
+            list.className = 'lista-tens';
+            list.innerHTML = `<br>Talão <b>${talao.index + 1}: ${talao.numeros} </b>- Acertos: ${talao.acertos}<br>`;
             divnova.appendChild(list);
         });
     
         this.assetInput.value = '';
     }
-    
-
     
     render() {
         const mainDiv = document.createElement('div');
@@ -111,7 +121,7 @@ export default class ConfereSena {
         this.assetInput = document.createElement('input');
         this.assetInput.setAttribute('type', 'text');
         this.assetInput.setAttribute('placeholder', 'Nº Concurso');
-        this.assetInput.id ='buscaConcursos';
+        this.assetInput.id = 'buscaConcursos';
         this.assetInput.required = true;
         containerDiv.appendChild(this.assetInput);
         this.buscarButton = document.createElement('button');
@@ -124,8 +134,7 @@ export default class ConfereSena {
         
         return {
             element: mainDiv,
-            init: () => this.init() 
+            init: () => this.init()
         };
     }
 }
-

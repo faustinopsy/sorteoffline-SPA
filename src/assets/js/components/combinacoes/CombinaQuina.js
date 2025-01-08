@@ -1,16 +1,16 @@
-import LocalStorageJS from './LocalStorage.js';
+import LocalStorageJS from '../lib/LocalStorage.js';
 
-export default class GeradorCombinacoes {
+export default class CombinaQuina {
     constructor() {
         this.numerosSelecionados = new Set();
-        this.maxNumeros = 25;
+        this.maxNumeros = 80;
     }
 
     salvarCombinacoes(combinacoes) {
         combinacoes.forEach(combinacao => {
             const combinacaoString = combinacao.map(num => num < 10 ? '0' + num : num).join(',');
             this.buscalocal = new LocalStorageJS(combinacaoString);
-            this.buscalocal.salvarLoteria('facil', 'lotofacil');
+            this.buscalocal.salvarLoteria('quina', 'lotoquina');
         });
 
         this.exibeModal('Combinações salvas com sucesso!');
@@ -36,8 +36,11 @@ export default class GeradorCombinacoes {
         });
     }
 
-    gerarCombinacoes(arr, tamanho) {
+    gerarCombinacoes(arr, tamanho, limite) {
         function auxiliar(init, left, k) {
+            if (resultados.length >= limite) {
+                return;
+            }
             if (k === 0) {
                 resultados.push(init);
                 return;
@@ -146,8 +149,8 @@ export default class GeradorCombinacoes {
         gerarButton.textContent = 'Gerar';
         gerarButton.addEventListener('click', () => {
             const selecao = parseInt(this.numerosSelecionados.size) || 0;
-            if (parseInt(selecao) < 16) {
-                this.exibeModal('Selecione ao menos 16 números');
+            if (parseInt(selecao) < 6) {
+                this.exibeModal('Selecione ao menos 6 números');
                 return;
             }
             const quantidade = parseInt(inputQuantidade.value) || 0;
@@ -155,9 +158,12 @@ export default class GeradorCombinacoes {
                 this.exibeModal('Gere ao menos 2 combinações');
                 return;
             }
-
+            if (quantidade > 1000) {
+                this.exibeModal('O limite de combinações é 1000');
+                return;
+            }
             this.medirPerformance(() => {
-                const todasCombinacoes = this.gerarCombinacoes(Array.from(this.numerosSelecionados), 15);
+                const todasCombinacoes = this.gerarCombinacoes(Array.from(this.numerosSelecionados), 5, quantidade);
                 const combinacoesSelecionadas = this.selecionarCombinacoesAleatorias(todasCombinacoes, quantidade);
                 this.renderizarCombinacoes(combinacoesSelecionadas);
             });
