@@ -1,6 +1,6 @@
 import Navbar from './components/Navbar.js';
-import AboutScreen from './components/screen/About.js';
 import MenuGenerator from './components/Home.js';
+import AboutScreen from './components/screen/About.js';
 import LotoFacilScreen from './components/screen/Lotofacil.js';
 import LotomaniaScreen from './components/screen/Lotomania.js';
 import MegaScreen from './components/screen/Mega.js';
@@ -15,15 +15,29 @@ class App {
     constructor() {
         this.appElement = document.getElementById('app');
         this.userLanguage = navigator.language || navigator.userLanguage;
-        this.navbar = new Navbar(this.navigate.bind(this));
+        this.menuItems = [
+            { text: 'mega', icon: "assets/img/nmega.png"},
+            { text: 'facil', icon: "assets/img/nfacil.png" },
+            { text:'🏠', icon: "assets/img/home.png"},
+            { text: 'quina', icon: "assets/img/nquina.png" },
+            { text: 'mania', icon: "assets/img/nmania.png" },
+        ];
+        this.menuHome = [
+            { href: "facil", icon: "assets/img/lotofacil.png", text: "LOTOFACIL", id: "1-0" },
+            { href: "mega", icon: "assets/img/megasena.png", text: "MEGASENA", id: "1-1" },
+            { href: "quina", icon: "assets/img/quina.png", text: "QUINA", id: "0-2" },
+            { href: "mania", icon: "assets/img/lotomania.png", text: "LOTOMANIA", id: "0-0" },
+            { href: "about", icon: "assets/img/about.png", text: "ABOUT", id: "0-0" }
+        ];
+        this.navbar = new Navbar(this.navigate.bind(this), this.menuItems);
         //this.addPopStateListener();
         this.navigate('🏠');
         this.loterias = [
-            {nome : 'lotofacil', simb: 'facil', max: 25, min: 15},
+            {nome : 'lotofacil', simb: 'facil', max: 25,  min: 15},
             {nome : 'lotomania', simb: 'mania', max: 100, min: 50},
-            {nome : 'megasena', simb: 'mega', max: 60, min: 6},
-            {nome : 'quina', simb: 'quina', max: 80, min: 5},
-        ]
+            {nome : 'megasena',  simb: 'mega',  max: 60,  min: 6},
+            {nome : 'quina',     simb: 'quina', max: 80,  min: 5},
+        ];
     }
 
     navigate(link) {
@@ -31,7 +45,7 @@ class App {
         let componentInstance;
 
         if (link === '🏠') {
-            componentInstance = new MenuGenerator(this.navigate.bind(this), this.userLanguage);
+            componentInstance = new MenuGenerator(this.navigate.bind(this), this.userLanguage,this.menuHome);
             this.removeNavbar();
         } else {
             componentInstance = this.getComponentInstance(link);

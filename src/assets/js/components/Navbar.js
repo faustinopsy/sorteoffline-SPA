@@ -1,13 +1,7 @@
 export default class Navbar {
-    constructor(navigateCallback) {
+    constructor(navigateCallback, menuItems) {
         this.navigateCallback = navigateCallback;
-        this.menuItems = [
-            { text: 'mega', icon: "assets/img/nmega.png"},
-            { text: 'facil', icon: "assets/img/nfacil.png" },
-            { text:'🏠', icon: "assets/img/home.png"},
-            { text: 'quina', icon: "assets/img/nquina.png" },
-            { text: 'mania', icon: "assets/img/nmania.png" },
-        ];
+        this.menuItems = menuItems || [];
     }
     init() {
         const navbarElement = document.getElementById('navbar');
