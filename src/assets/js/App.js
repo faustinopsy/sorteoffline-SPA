@@ -15,6 +15,7 @@ import QuinaScreen from './components/screen/Quina.js';
 import CombinaFacil from './components/combinacoes/CombinaFacil.js';
 import CombinaSena from './components/combinacoes/CombinaSena.js';
 import CombinaQuina from './components/combinacoes/CombinaQuina.js';
+import CombinaMania from './components/combinacoes/CombinaMania.js';
 import ListaSena from './components/list/ListaSena.js';
 import CadSena from './components/cad/CadSena.js';
 import ConfereSena from './components/list/ConfereSena.js';
@@ -23,6 +24,7 @@ import ListaMania from './components/list/ListaMania.js';
 import CadMania from './components/cad/CadMania.js';
 import ConfereMania from './components/list/ConfereMania.js';
 
+import GraficoParesImpares from './components/graficos/GraficoParesImpares.js';
 class App {
     constructor() {
         this.appElement = document.getElementById('app');
@@ -86,6 +88,11 @@ class App {
             case 'combinacoesFacil': return new CombinaFacil();
             case 'combinacoesQuina': return new CombinaQuina();
             case 'combinacoesSena': return new CombinaSena();
+            case 'combinacoesMania': return new CombinaMania();
+            case 'lotofacilpares': return new GraficoParesImpares('lotofacil');
+            case 'megasenapares': return new GraficoParesImpares('megasena');
+            case 'maniapares': return new GraficoParesImpares('lotomania');
+            case 'quinapares': return new GraficoParesImpares('quina');
             default: return null;
         }
     }

@@ -95,7 +95,7 @@ if ('serviceWorker' in navigator) {
     const installModal = document.createElement('div');
     installModal.setAttribute('id', 'installModal');
     installModal.innerHTML = `
-        <div class="app-footer">
+        <div class="app-footer" style="z-index:1004">
             <h2>Instalar Aplicativo</h2>
             <p>Quer instalar para uma experiência completa?</p>
             <button id="installBtn" class="button4">Instalar</button>

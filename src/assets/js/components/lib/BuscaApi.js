@@ -37,9 +37,10 @@ export default class BuscaApi {
     
         const cachedResult = localStorage.getItem(cacheKey);
         if (cachedResult) {
+            console.log('do local')
             return JSON.parse(cachedResult);
         }
-    
+        console.log('da api')
         try {
             const response = await fetch(`https://servicebus2.caixa.gov.br/portaldeloterias/api/${this.loteria}/${this.numero}`, {
                 method: 'GET',
