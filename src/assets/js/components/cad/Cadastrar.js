@@ -1,8 +1,14 @@
 import  LocalStorageJS  from '../lib/LocalStorage.js';
-export default class CadMania {
-    constructor() {
+import Modal from '../lib/Modal.js';
+export default class Cadastrar {
+    constructor(loteria) {
         this.displayValue = '0'
         this.buscalocal = null;
+        this.maxNumeros = loteria.max;
+        this.minNumeros = loteria.min;
+        this.tipo = loteria.nome;
+        this.simbolo = loteria.simb;
+        this.modal = new Modal();
     }
 
     init() {
@@ -14,8 +20,8 @@ export default class CadMania {
     atualizaEstiloCabecalho() {
         const cabecalho = document.querySelector('.app-header');
         if (cabecalho) {
-            cabecalho.style.background = 'linear-gradient(rgb(0, 0, 0), rgb(242 133 35), rgb(242 133 35))'; 
-            cabecalho.style.boxShadow = 'rgb(242 133 35) 0px 36px 36px 56px'; 
+            cabecalho.style.background = 'linear-gradient(to bottom, rgb(0 0 0), #c44bbc, rgb(194 71 187))'; 
+            cabecalho.style.boxShadow = '0 36px 36px 56px rgb(199 86 194)'; 
         }
     }
     bindEvents() {
@@ -35,7 +41,7 @@ export default class CadMania {
             numerosSelecionados.splice(index, 1);
             document.getElementById(`n${num}`).classList.remove('bolas-selecionadas');
         } else {
-            if (numerosSelecionados.length < 50) {
+            if (numerosSelecionados.length < this.minNumeros) {
                 numerosSelecionados.push(num);
                 document.getElementById(`n${num}`).classList.add('bolas-selecionadas');
             }
@@ -48,7 +54,7 @@ export default class CadMania {
     updateDisplay() {
         const salvarBtn = document.getElementById('colocarnocarrinho');
         const numerosSelecionados = this.displayValue.split(',');
-        salvarBtn.disabled = numerosSelecionados.length !== 50 || this.displayValue === '0';
+        salvarBtn.disabled = numerosSelecionados.length !== this.minNumeros || this.displayValue === '0';
         const numerosOrdenados = this.displayValue.split(',')
             .map(num => parseInt(num, 10)) 
             .sort((a, b) => a - b); 
@@ -63,7 +69,7 @@ export default class CadMania {
             }
         });
     
-        document.getElementById('displaymania').innerText = displayTexto;
+        document.getElementById('display').innerText = displayTexto;
     }
     
     clearDisplay() {
@@ -73,7 +79,6 @@ export default class CadMania {
         });
         this.updateDisplay();
     }
-    
 
     salvar() {
         const numerosOrdenados = this.displayValue.split(',')
@@ -82,102 +87,60 @@ export default class CadMania {
     
         const numerosOrdenadosString = numerosOrdenados.map(num => num < 10 ? '0' + num : num).join(',');
         this.buscalocal = new LocalStorageJS(numerosOrdenadosString);
-        this.buscalocal.salvarLoteria('mania', 'lotomania');
+        this.buscalocal.salvarLoteria(this.simbolo, this.tipo );
         this.displayValue = '0';
-        this.exibeModal();
+        this.modal.exibeModal("Salvo com sucesso!.");
         this.clearDisplay();
-    }
-    exibeModal(){
-        Swal.fire({
-            title: "Salvo com sucesso!.",
-            showClass: {
-              popup: `
-                animate__animated
-                animate__fadeInUp
-                animate__faster
-              `
-            },
-            hideClass: {
-              popup: `
-                animate__animated
-                animate__fadeOutDown
-                animate__faster
-              `
-            }
-          });
     }
     
     render() {
         const mainDiv = document.createElement('div');
         mainDiv.className = 'main';
+    
         const containerDiv = document.createElement('div');
         containerDiv.className = 'container';
+    
         const statusMessageDiv = document.createElement('div');
         statusMessageDiv.id = 'statusMessage';
         containerDiv.appendChild(statusMessageDiv);
+    
         const displayDiv = document.createElement('div');
-        displayDiv.id = 'displaymania';
+        displayDiv.id = 'display';
         displayDiv.textContent = this.displayValue;
         containerDiv.appendChild(displayDiv);
+    
         const tecladoDiv = document.createElement('div');
         tecladoDiv.id = 'teclado';
-        
-        const buttons = [
-            '01', '02', '03', '04', '05',
-            '06', '07', '08', '09', '10',
-            '11', '12', '13', '14', '15',
-            '16', '17', '18', '19', '20',
-            '21', '22', '23', '24', '25',
-            '26', '27', '28', '29', '30',
-            '31', '32', '33', '34', '35',
-            '36', '37', '38', '39', '40',
-            '41', '42', '43', '44', '45',
-            '46', '47', '48', '49', '50',
-            '51', '52', '53', '54', '55',
-            '56', '57', '58', '59', '60',
-            '61', '62', '63', '64', '65',
-            '66', '67', '68', '69', '70',
-            '71', '72', '73', '74', '75',
-            '76', '77', '78', '79', '80',
-            '81', '82', '83', '84', '85',
-            '86', '87', '88', '89', '90',
-            '91', '92', '93', '94', '95',
-            '96', '97', '98', '99', '00'
-            
-        ];
-        buttons.forEach((text, index) => {
+    
+        for (let i = 1; i <= this.maxNumeros; i++) {
             const button = document.createElement('button');
             button.className = 'bolas';
-            button.textContent = text;
-            button.id = `n${text}`;
+            button.textContent = i.toString().padStart(2, '0');
+            button.id = `n${i.toString().padStart(2, '0')}`;
             tecladoDiv.appendChild(button);
-
-            if ((index + 1) % 100 === 0) {
-                tecladoDiv.appendChild(document.createElement('br'));
-            }
-        });
-        const btns = [
-            '🗑️', '💾'
-        ];
-        btns.forEach((text, index) => {
-        const buttonc = document.createElement('button');
-        buttonc.textContent = text;
-        
-        if (text === '🗑️') buttonc.id = 'bclear';
-        if (text === '💾') {
-            buttonc.id = 'colocarnocarrinho';
-            buttonc.disabled = true;
+    
         }
-        containerDiv.appendChild(buttonc);
+    
+        const btns = [
+            { text: '🗑️', id: 'bclear' },
+            { text: '💾', id: 'colocarnocarrinho', disabled: true }
+        ];
+        btns.forEach(({ text, id, disabled }) => {
+            const button = document.createElement('button');
+            button.textContent = text;
+            button.id = id;
+            if (disabled) button.disabled = true;
+            containerDiv.appendChild(button);
         });
-        
+    
         containerDiv.appendChild(tecladoDiv);
         mainDiv.appendChild(containerDiv);
-        
+    
         return {
             element: mainDiv,
-            init: () => this.init() 
+            init: () => this.init()
         };
     }
+    
 }
 

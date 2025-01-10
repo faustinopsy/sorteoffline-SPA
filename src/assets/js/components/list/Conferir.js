@@ -1,14 +1,17 @@
 import BuscaApi from '../lib/BuscaApi.js';
 import LocalStorageJS from '../lib/LocalStorage.js';
-
-export default class ConfereQuina {
-    constructor() {
+import Modal from '../lib/Modal.js';
+export default class Conferir {
+    constructor(loteria) {
         this.displayValue = '0';
         this.buscalocal = null;
         this.lista = null;
         this.assetInput = null;
         this.buscarButton = null;
         this.meusnumeros = null;
+        this.tipo = loteria.nome;
+        this.simbolo = loteria.simb;
+        this.modal = new Modal();
     }
 
     init() {
@@ -19,8 +22,8 @@ export default class ConfereQuina {
     atualizaEstiloCabecalho() {
         const cabecalho = document.querySelector('.app-header');
         if (cabecalho) {
-            cabecalho.style.background = 'linear-gradient(rgb(0, 0, 0), rgb(63 98 230), rgb(47 118 200))'; 
-            cabecalho.style.boxShadow = 'rgb(47 118 200) 0px 36px 36px 56px'; 
+            cabecalho.style.background = 'linear-gradient(to bottom, rgb(0 0 0), #c44bbc, rgb(194 71 187))'; 
+            cabecalho.style.boxShadow = '0 36px 36px 56px rgb(199 86 194)'; 
         }
     }
 
@@ -33,27 +36,7 @@ export default class ConfereQuina {
             if (this.assetInput.value !== '') {
                 this.Listar();
             } else {
-                this.exibeModal(); 
-            }
-        });
-    }
-    
-    exibeModal() {
-        Swal.fire({
-            title: "Preencha um número para busca.",
-            showClass: {
-                popup: `
-                    animate__animated
-                    animate__fadeInUp
-                    animate__faster
-                `
-            },
-            hideClass: {
-                popup: `
-                    animate__animated
-                    animate__fadeOutDown
-                    animate__faster
-                `
+                this.modal.exibeModal("Preencha um número para busca."); 
             }
         });
     }
@@ -65,12 +48,12 @@ export default class ConfereQuina {
 
     async Listar() {
         let numero = this.assetInput.value;
-        this.busca = new BuscaApi(numero, 'quina');
+        this.busca = new BuscaApi(numero, this.tipo);
         this.lista = await this.busca.buscaResultadosAPI();
         const numerosSorteados = this.lista.listaDezenas.map(Number);
     
         this.buscalocal = new LocalStorageJS(this.displayValue);
-        this.meusnumeros = this.buscalocal.listaLoteria('quina', 'lotoquina');
+        this.meusnumeros = this.buscalocal.listaLoteria(this.simbolo, this.tipo);
     
         const divnova = document.querySelector('.container');
         const input = document.querySelector('#buscaConcursos');
@@ -96,8 +79,10 @@ export default class ConfereQuina {
             return { numeros, acertos, index };
         });
     
+        // Ordenar os talões por acertos de forma decrescente
         taloesAcertos.sort((a, b) => b.acertos - a.acertos);
     
+        // Renderizar os talões ordenados
         taloesAcertos.forEach(talao => {
             const list = document.createElement('p');
             list.id = talao.index + 1;
@@ -120,6 +105,7 @@ export default class ConfereQuina {
         this.assetInput.setAttribute('type', 'text');
         this.assetInput.setAttribute('placeholder', 'Nº Concurso');
         this.assetInput.id = 'buscaConcursos';
+        this.assetInput.style.fontSize = '1.5rem'
         this.assetInput.required = true;
         containerDiv.appendChild(this.assetInput);
         this.buscarButton = document.createElement('button');

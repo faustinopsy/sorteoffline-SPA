@@ -1,30 +1,16 @@
 import Navbar from './components/Navbar.js';
 import AboutScreen from './components/screen/About.js';
 import MenuGenerator from './components/Home.js';
-import LotomaniaScreen from './components/screen/Lotomania.js';
 import LotoFacilScreen from './components/screen/Lotofacil.js';
-import CadFacil from './components/cad/CadFacil.js';
-import CadQuina from './components/cad/CadQuina.js';
-import ListaFacil from './components/list/ListaFacil.js';
-import ListaQuina from './components/list/ListaQuina.js';
-import ConfereFacil from './components/list/ConfereFacil.js';
-import ConfereQuina from './components/list/ConfereQuina.js';
+import LotomaniaScreen from './components/screen/Lotomania.js';
 import MegaScreen from './components/screen/Mega.js';
 import QuinaScreen from './components/screen/Quina.js';
-
-import CombinaFacil from './components/combinacoes/CombinaFacil.js';
-import CombinaSena from './components/combinacoes/CombinaSena.js';
-import CombinaQuina from './components/combinacoes/CombinaQuina.js';
-import CombinaMania from './components/combinacoes/CombinaMania.js';
-import ListaSena from './components/list/ListaSena.js';
-import CadSena from './components/cad/CadSena.js';
-import ConfereSena from './components/list/ConfereSena.js';
-
-import ListaMania from './components/list/ListaMania.js';
-import CadMania from './components/cad/CadMania.js';
-import ConfereMania from './components/list/ConfereMania.js';
-
+import Cadastrar from './components/cad/Cadastrar.js';
+import Listar from './components/list/Listar.js';
+import Conferir from './components/list/Conferir.js';
+import Combinar from './components/combinacoes/Combinar.js';
 import GraficoParesImpares from './components/graficos/GraficoParesImpares.js';
+
 class App {
     constructor() {
         this.appElement = document.getElementById('app');
@@ -32,6 +18,12 @@ class App {
         this.navbar = new Navbar(this.navigate.bind(this));
         //this.addPopStateListener();
         this.navigate('🏠');
+        this.loterias = [
+            {nome : 'lotofacil', simb: 'facil', max: 25, min: 15},
+            {nome : 'lotomania', simb: 'mania', max: 100, min: 50},
+            {nome : 'megasena', simb: 'mega', max: 60, min: 6},
+            {nome : 'quina', simb: 'quina', max: 80, min: 5},
+        ]
     }
 
     navigate(link) {
@@ -72,27 +64,31 @@ class App {
             case 'mega': return new MegaScreen(this.navigate.bind(this), this.userLanguage);
             case 'quina': return new QuinaScreen(this.navigate.bind(this), this.userLanguage);
             case 'about': return new AboutScreen(this.userLanguage);
-            case 'cadfacil': return new CadFacil();
-            case 'cadquina': return new CadQuina();
-            case 'listafacil': return new ListaFacil();
-            case 'listarquina': return new ListaQuina();
-            case 'conferirquina': return new ConfereQuina();
-            case 'cadsena': return new CadSena();
-            case 'listarsena': return new ListaSena();
-            case 'conferirsena': return new ConfereSena();
-            case 'cadmania': return new CadMania();
-            case 'listarmania': return new ListaMania();
-            case 'conferirmania': return new ConfereMania();
             
-            case 'conferefacil': return new ConfereFacil();
-            case 'combinacoesFacil': return new CombinaFacil();
-            case 'combinacoesQuina': return new CombinaQuina();
-            case 'combinacoesSena': return new CombinaSena();
-            case 'combinacoesMania': return new CombinaMania();
-            case 'lotofacilpares': return new GraficoParesImpares('lotofacil');
-            case 'megasenapares': return new GraficoParesImpares('megasena');
-            case 'maniapares': return new GraficoParesImpares('lotomania');
-            case 'quinapares': return new GraficoParesImpares('quina');
+            case 'cadfacil': return new Cadastrar(this.loterias[0]);
+            case 'cadmania': return new Cadastrar(this.loterias[1]);
+            case 'cadsena': return new Cadastrar(this.loterias[2]);
+            case 'cadquina': return new Cadastrar(this.loterias[3]);
+
+            case 'listafacil': return new Listar(this.loterias[0]);
+            case 'listarmania': return new Listar(this.loterias[1]);
+            case 'listarsena': return new Listar(this.loterias[2]);
+            case 'listarquina': return new Listar(this.loterias[3]);
+
+            case 'conferefacil': return new Conferir(this.loterias[0]);
+            case 'conferirmania': return new Conferir(this.loterias[1]);
+            case 'conferirsena': return new Conferir(this.loterias[2]);
+            case 'conferirquina': return new Conferir(this.loterias[3]);
+
+            case 'combinacoesFacil': return new Combinar(this.loterias[0]);
+            case 'combinacoesSena': return new Combinar(this.loterias[1]);
+            case 'combinacoesMania': return new Combinar(this.loterias[2]);
+            case 'combinacoesQuina': return new Combinar(this.loterias[3]);
+
+            case 'lotofacilpares': return new GraficoParesImpares(this.loterias[0]);
+            case 'maniapares': return new GraficoParesImpares(this.loterias[1]);
+            case 'megasenapares': return new GraficoParesImpares(this.loterias[2]);
+            case 'quinapares': return new GraficoParesImpares(this.loterias[3]);
             default: return null;
         }
     }

@@ -1,7 +1,7 @@
 import BuscaApi from '../lib/BuscaApi.js';
 
 export default class GraficoParesImpares {
-    constructor(tipo) {
+    constructor(loteria) {
         this.pares = 0;
         this.impares = 0;
         this.container = null;
@@ -9,7 +9,7 @@ export default class GraficoParesImpares {
         this.lista = null;
         this.numeros = null
         this.paresImparesChart = null;
-        this.tipo = tipo;
+        this.tipo = loteria.nome;
     }
 
     async buscaDadosAPI() {

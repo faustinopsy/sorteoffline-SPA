@@ -1,39 +1,23 @@
 import LocalStorageJS from '../lib/LocalStorage.js';
-
-export default class CombinaSena {
-    constructor() {
+import Modal from '../lib/Modal.js';
+export default class Combinar {
+    constructor(loteria) {
         this.numerosSelecionados = new Set();
-        this.maxNumeros = 60;
+        this.maxNumeros = loteria.max;
+        this.minNumeros = loteria.min;
+        this.tipo = loteria.nome;
+        this.simbolo = loteria.simb;
+        this.modal = new Modal();
     }
 
     salvarCombinacoes(combinacoes) {
         combinacoes.forEach(combinacao => {
             const combinacaoString = combinacao.map(num => num < 10 ? '0' + num : num).join(',');
             this.buscalocal = new LocalStorageJS(combinacaoString);
-            this.buscalocal.salvarLoteria('sena', 'lotosena');
+            this.buscalocal.salvarLoteria(this.simbolo, this.tipo);
         });
 
-        this.exibeModal('Combinações salvas com sucesso!');
-    }
-
-    exibeModal(mensagem) {
-        Swal.fire({
-            title: mensagem,
-            showClass: {
-                popup: `
-                    animate__animated
-                    animate__fadeInUp
-                    animate__faster
-                `
-            },
-            hideClass: {
-                popup: `
-                    animate__animated
-                    animate__fadeOutDown
-                    animate__faster
-                `
-            }
-        });
+        this.modal.exibeModal('Combinações salvas com sucesso!');
     }
 
     gerarCombinacoes(arr, tamanho, limite) {
@@ -149,8 +133,8 @@ export default class CombinaSena {
         gerarButton.textContent = 'Gerar';
         gerarButton.addEventListener('click', () => {
             const selecao = parseInt(this.numerosSelecionados.size) || 0;
-            if (parseInt(selecao) < 7) {
-                this.exibeModal('Selecione ao menos 7 números');
+            if (parseInt(selecao) < (this.minNumeros+1)) {
+                this.exibeModal('Selecione ao menos 16 números');
                 return;
             }
             const quantidade = parseInt(inputQuantidade.value) || 0;
@@ -163,7 +147,7 @@ export default class CombinaSena {
                 return;
             }
             this.medirPerformance(() => {
-                const todasCombinacoes = this.gerarCombinacoes(Array.from(this.numerosSelecionados), 6, quantidade);
+                const todasCombinacoes = this.gerarCombinacoes(Array.from(this.numerosSelecionados), this.minNumeros, quantidade);
                 const combinacoesSelecionadas = this.selecionarCombinacoesAleatorias(todasCombinacoes, quantidade);
                 this.renderizarCombinacoes(combinacoesSelecionadas);
             });

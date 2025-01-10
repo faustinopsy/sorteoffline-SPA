@@ -1,10 +1,11 @@
 import  LocalStorageJS  from '../lib/LocalStorage.js';
-export default class ListaMania {
-    constructor() {
+export default class Listar {
+    constructor(loteria) {
         this.displayValue = '0'
         this.buscalocal = null;
         this.lista = null;
-        
+        this.tipo = loteria.nome;
+        this.simbolo = loteria.simb;
     }
 
     init() {
@@ -16,24 +17,25 @@ export default class ListaMania {
     atualizaEstiloCabecalho() {
         const cabecalho = document.querySelector('.app-header');
         if (cabecalho) {
-            cabecalho.style.background = 'linear-gradient(rgb(0, 0, 0), rgb(242 133 35), rgb(242 133 35))'; 
-            cabecalho.style.boxShadow = 'rgb(242 133 35) 0px 36px 36px 56px'; 
+            cabecalho.style.background = 'linear-gradient(to bottom, rgb(0 0 0), #c44bbc, rgb(194 71 187))'; 
+            cabecalho.style.boxShadow = '0 36px 36px 56px rgb(199 86 194)'; 
+            //box-shadow: inset -5px -5px 9px rgba(255,255,255,0.45), inset 5px 5px 9px rgba(94,104,121,0.3);
         }
     }
 
     Listar() {
         this.buscalocal = new LocalStorageJS(this.displayValue);
-        this.lista = this.buscalocal.listaLoteria('mania', 'lotomania');
+        this.lista = this.buscalocal.listaLoteria(this.simbolo, this.tipo);
     }
 
     removerItem(index) {
-        this.buscalocal.removerItemLoteria('mania', 'lotomania', index);
+        this.buscalocal.removerItemLoteria(this.simbolo, this.tipo, index);
         this.Listar();
         this.renderList();
     }
     excluirTodos(){
         this.buscalocal = new LocalStorageJS();
-        this.buscalocal.excluirTodos('mania', 'lotomania');
+        this.buscalocal.excluirTodos(this.simbolo, this.tipo);
         this.Listar();
         this.renderList();
     }
