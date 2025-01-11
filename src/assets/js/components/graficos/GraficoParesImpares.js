@@ -35,7 +35,21 @@ export default class GraficoParesImpares {
         if (this.paresImparesChart) {
             this.paresImparesChart.destroy();
         }
-        numeros.innerHTML = this.numeros
+        console.log(this.numeros.join(','))
+        const numerosOrdenados = this.numeros.join(',').split(',')
+            .map(num => parseInt(num, 10)) 
+            .sort((a, b) => a - b); 
+    
+        let displayTexto = '';
+        numerosOrdenados.forEach((num, index) => {
+            displayTexto += num < 10 ? '0' + num : num; 
+            if ((index + 1) % 5 === 0 && index < numerosOrdenados.length - 1) {
+                displayTexto += '\n'; 
+            } else if (index < numerosOrdenados.length - 1) {
+                displayTexto += ',';
+            }
+        });
+        numeros.innerHTML = displayTexto
 
         this.paresImparesChart = new Chart(paresImparesCanvas.getContext('2d'), {
             type: 'bar',
