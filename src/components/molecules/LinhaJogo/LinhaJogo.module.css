@@ -1,0 +1,22 @@
+.linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.bolas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+}
+
+.acertos {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--success);
+}

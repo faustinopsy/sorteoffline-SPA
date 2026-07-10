@@ -1,0 +1,17 @@
+.chip {
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ativo {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}

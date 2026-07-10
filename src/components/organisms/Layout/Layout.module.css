@@ -1,0 +1,24 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: var(--sp-4);
+  background: var(--primary);
+  color: #fff;
+  text-align: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: var(--fs-lg);
+}
+
+.header span {
+  font-size: var(--fs-sm);
+  opacity: 0.85;
+}
+
+.conteudo {
+  padding-bottom: 80px;
+  min-height: 100vh;
+}

@@ -1,0 +1,40 @@
+.fundo {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--sp-4);
+}
+
+.caixa {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+}
+
+.titulo {
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  margin: 0 0 var(--sp-2);
+}
+
+.texto {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin: 0 0 var(--sp-4);
+}
+
+.acoes {
+  display: flex;
+  gap: var(--sp-3);
+}
+
+.acoes > * {
+  flex: 1;
+}

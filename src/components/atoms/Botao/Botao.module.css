@@ -1,0 +1,33 @@
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  cursor: pointer;
+}
+
+.botao:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.primario {
+  background: var(--primary);
+  color: #fff;
+}
+
+.perigo {
+  background: var(--danger);
+  color: #fff;
+}
+
+.fantasma {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+}

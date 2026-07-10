@@ -1,0 +1,6 @@
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: var(--sp-2);
+  padding: var(--sp-4);
+}

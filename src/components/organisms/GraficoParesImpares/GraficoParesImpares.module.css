@@ -1,0 +1,18 @@
+.wrap {
+  padding: var(--sp-4);
+}
+
+.info {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  margin-bottom: var(--sp-3);
+}
+
+.numeros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+  justify-content: center;
+  margin-bottom: var(--sp-4);
+}

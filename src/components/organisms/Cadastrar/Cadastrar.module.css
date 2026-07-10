@@ -1,0 +1,60 @@
+.wrap {
+  padding: var(--sp-4);
+}
+
+.display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+  min-height: 44px;
+  align-items: center;
+}
+
+.dica {
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+.progressoWrap {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin: var(--sp-3) 0;
+}
+
+.barra {
+  flex: 1;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.barraPreench {
+  height: 100%;
+  background: var(--primary);
+  transition: width 150ms ease;
+}
+
+.acoes {
+  display: flex;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-3);
+}
+
+.fab {
+  position: fixed;
+  right: var(--sp-4);
+  bottom: 96px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
