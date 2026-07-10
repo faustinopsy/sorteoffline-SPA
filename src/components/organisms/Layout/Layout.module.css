@@ -2,19 +2,29 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  padding: var(--sp-4);
+  padding: var(--sp-3) var(--sp-4);
   background: var(--primary);
   color: #fff;
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .header h1 {
   margin: 0;
-  font-size: var(--fs-lg);
+  font-size: var(--fs-md);
+  font-weight: 800;
+  line-height: 1.2;
 }
 
-.header span {
+.separador {
+  opacity: 0.6;
+  font-weight: 400;
+}
+
+.subtitulo {
   font-size: var(--fs-sm);
+  font-weight: 600;
   opacity: 0.85;
 }
 

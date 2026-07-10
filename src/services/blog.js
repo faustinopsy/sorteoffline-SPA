@@ -1,7 +1,7 @@
 import { fetchJson } from './http.js';
 
 const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
-const BASE_URL = isLocal ? 'http://localhost:8000' : 'https://api.lmania.com.br';
+const BASE_URL = isLocal ? 'https://api.lmania.com.br' : 'https://api.lmania.com.br';
 
 function cacheado(chave, fetcher) {
   const cache = localStorage.getItem(chave);
