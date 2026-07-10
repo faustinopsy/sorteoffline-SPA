@@ -92,11 +92,6 @@ export default function Fechar({ loteria }) {
               <span>{m.id}</span>
               <span>{m.desc}</span>
               {m.feasibility === 'slow' && <Badge title="Pode demorar alguns segundos">⏱</Badge>}
-              {m.trivial && (
-                <Badge title="A condição é tão ampla que qualquer talão de min dezenas já garante sozinho — vai gerar só 1 talão.">
-                  1 talão
-                </Badge>
-              )}
             </button>
           ))}
           <Botao variante="primario" disabled={!matrizAtiva} onClick={gerar}>
@@ -127,14 +122,6 @@ export default function Fechar({ loteria }) {
               {resultado.timedOut
                 ? `⚠ Tempo esgotado. ${resultado.tickets.length} talões gerados com cobertura parcial (${pct}%).`
                 : `⚠ Cobertura parcial: ${pct}% dos cenários cobertos com ${resultado.tickets.length} talões (limite de 100 atingido).`}
-            </p>
-          )}
-
-          {matrizAtiva.trivial && resultado.tickets.length <= 1 && (
-            <p>
-              ℹ Essa condição é tão ampla que qualquer talão de {loteria.min} dezenas já garante {matrizAtiva.g} pts
-              sozinho — por isso apenas 1 talão foi necessário. Escolha uma matriz sem o selo "1 talão" para um
-              fechamento que realmente precise de vários cartões.
             </p>
           )}
 
