@@ -51,6 +51,23 @@ button,
 input,
 select {
   font-family: inherit;
+}
+
+input,
+select,
+textarea {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-2) var(--sp-3);
+}
+
+input::placeholder {
+  color: var(--text-muted);
+}
+
+button {
   color: inherit;
 }
 

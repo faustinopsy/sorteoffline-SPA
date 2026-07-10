@@ -13,12 +13,10 @@ export default function BannerAnuncio() {
       rel="noopener noreferrer nofollow"
       className={styles.banner}
     >
-      <div className={styles.wrap}>
-        <span className={styles.rotulo}>Publicidade</span>
-        {anuncio.tipo === 'imagem' && anuncio.imagemUrl && (
-          <img src={anuncio.imagemUrl} alt={anuncio.titulo || ''} className={styles.imagem} />
-        )}
-      </div>
+      <span className={styles.rotulo}>Publicidade</span>
+      {anuncio.tipo === 'imagem' && anuncio.imagemUrl && (
+        <img src={anuncio.imagemUrl} alt={anuncio.titulo || ''} className={styles.imagem} />
+      )}
       <div>
         {anuncio.titulo && <p className={styles.titulo}>{anuncio.titulo}</p>}
         {anuncio.tipo === 'texto' && anuncio.texto && <p className={styles.texto}>{anuncio.texto}</p>}

@@ -1,8 +1,9 @@
 .banner {
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--sp-3);
-  padding: var(--sp-3) var(--sp-4);
+  padding: var(--sp-4) var(--sp-4) var(--sp-3);
   margin: var(--sp-2) var(--sp-4);
   background: var(--card);
   border: 1px solid var(--border);
@@ -13,15 +14,11 @@
 
 .rotulo {
   position: absolute;
-  top: 2px;
-  right: 8px;
+  top: 4px;
+  right: var(--sp-3);
   font-size: 9px;
   color: var(--text-muted);
   text-transform: uppercase;
-}
-
-.wrap {
-  position: relative;
 }
 
 .imagem {
