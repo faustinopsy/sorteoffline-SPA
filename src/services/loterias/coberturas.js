@@ -22,6 +22,17 @@ export function feasibility(N, min, a) {
   return 'infeasible';
 }
 
+/**
+ * Uma matriz é "trivial" quando a pior sobreposição possível entre qualquer talão
+ * (que exclui N-min dezenas) e qualquer cenário-alvo (que exclui N-a dezenas) já
+ * basta para atingir g: min+a-N >= g. Nesse caso QUALQUER talão de `min` dezenas
+ * cobre 100% dos cenários sozinho — 1 talão é o resultado matematicamente correto
+ * e ótimo, não uma falha do algoritmo de fechamento.
+ */
+export function ehTrivial(N, min, g, a) {
+  return min + a - N >= g;
+}
+
 /** Matrizes de fechamento disponíveis para N dezenas selecionadas (filtra inviáveis). */
 export function getMatrices(N, min, sorteia, gMin = 2) {
   const gMax = Math.min(min, sorteia);
@@ -38,6 +49,7 @@ export function getMatrices(N, min, sorteia, gMin = 2) {
         g,
         a,
         feasibility: f,
+        trivial: ehTrivial(N, min, g, a),
         desc: `Garante ${g} pts se ${a} das ${N} saírem`,
       });
     }
