@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080c14">
+  <base href="/">
+
+  <!-- SEO -->
+  <title>LMania — Conferidor e Gerador de Jogos de Loteria</title>
+  <meta name="description" content="LMania: A ferramenta definitiva para o apostador inteligente. Crie fechamentos matemáticos, analise estatísticas, realize backtests históricos e confira seus jogos da Mega-Sena, Lotofácil, Quina e Lotomania.">
+  <meta name="keywords" content="LMania, Mega-Sena, Lotofácil, Quina, Lotomania, conferidor loteria, desdobramento, gerador jogos, estatísticas loteria">
+  <meta name="author" content="Rodrigo Faustino">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://lmania.com.br">
+
+  <!-- Open Graph -->
+  <meta property="og:locale"      content="pt_BR">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://lmania.com.br/">
+  <meta property="og:site_name"   content="LMania — Inteligência Lotérica">
+  <meta property="og:title"       content="LMania | Jogue e Confira seus Jogos Estratégicos">
+  <meta property="og:description" content="Transforme sorte em estatística. Gere desdobramentos e teste suas estratégias com nossa ferramenta avançada de análise lotérica.">
+  <meta property="og:image"       content="https://lmania.com.br/assets/share-image.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="LMania | Estratégia Profissional para Loterias">
+  <meta name="twitter:description" content="Pare de jogar aleatoriamente. Use a matemática a seu favor com o LMania.">
+
+  <!-- PWA -->
+  <link rel="manifest"      href="/manifest.json">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+  <!-- ══════════════════════════════════════════════════════════════
+       CSS CRÍTICO — renderiza o Home sem aguardar styles.css
+       Inclui: tokens, reset, header, main, grid de loterias, animação
+       ══════════════════════════════════════════════════════════════ -->
+  <style>
+    /* tokens */
+    :root{--app-max-w:480px;--header-h:64px;--navbar-h:72px;--radius-xl:24px;--radius-lg:18px;--radius-md:12px;--radius-pill:40px;--sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:20px;--sp-6:24px;--sp-8:32px;--sp-10:40px;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;--fs-2xs:10px;--fs-xs:11px;--fs-sm:13px;--fs-md:15px;--fs-lg:17px;--fs-xl:22px;--fs-2xl:28px;--fs-3xl:36px;--bg:#080c14;--surface:#0e1420;--card:#131b2e;--border:rgba(255,255,255,.07);--border-focus:rgba(255,255,255,.18);--text:#e8edf5;--text-muted:#94a3b8;--text-dim:#8899aa;--accent:#f97316;--primary:#3b82f6;--success:#22c55e;--danger:#ef4444;--grad-home:linear-gradient(160deg,#0f172a 0%,#1e3a5f 50%,#0f4c81 100%);--glass-bg:rgba(13,20,35,.88);--glass-border:rgba(255,255,255,.08);--sh-md:0 8px 32px rgba(0,0,0,.55);--t-fast:120ms ease;--t-normal:220ms ease;--t-slow:380ms cubic-bezier(.4,0,.2,1)}
+
+    /* reset */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{font-size:100%;-webkit-text-size-adjust:100%}
+    body{font-family:var(--font);font-size:var(--fs-md);line-height:1.5;background:var(--bg);color:var(--text);min-height:100dvh;overflow-x:hidden;-webkit-font-smoothing:antialiased;user-select:none}
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+    /* layout shell */
+    #app{max-width:var(--app-max-w);margin:0 auto;min-height:100dvh;position:relative;box-shadow:0 0 0 1px rgba(255,255,255,.04)}
+
+    /* header */
+    .app-header{position:sticky;top:0;z-index:200;width:100%;height:var(--header-h);padding:0 var(--sp-5);display:flex;align-items:center;justify-content:space-between;background:var(--grad-home);transition:background var(--t-slow)}
+    .app-header::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.2) 0%,transparent 100%);pointer-events:none}
+    .app-header h1{font-size:var(--fs-xl);font-weight:800;color:#fff;letter-spacing:-.5px;text-shadow:0 1px 6px rgba(0,0,0,.4);line-height:1}
+    #titulo{font-size:var(--fs-sm);font-weight:600;color:rgba(255,255,255,.75);letter-spacing:.4px}
+    #buttonInstall{display:none}
+
+    /* main content area */
+    .main{display:flex;flex-wrap:wrap;justify-content:center;width:100%;min-height:calc(100dvh - var(--header-h) - var(--navbar-h));padding:var(--sp-5) var(--sp-4);padding-bottom:calc(var(--navbar-h) + var(--sp-6));background:var(--bg)}
+
+    /* home lottery grid */
+    .menu{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-4);width:100%;max-width:420px;padding:var(--sp-2) 0}
+    .menu__item{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--sp-3);padding:var(--sp-5) var(--sp-4);background:var(--card);border:1px solid var(--border);border-radius:var(--radius-xl);cursor:pointer;overflow:hidden;transition:transform var(--t-normal),border-color var(--t-normal),box-shadow var(--t-normal)}
+    .menu__item::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,transparent 60%);opacity:0;transition:opacity var(--t-normal);pointer-events:none}
+    .menu__item:hover,.menu__item:focus-visible{transform:translateY(-5px) scale(1.01);border-color:rgba(255,255,255,.16);box-shadow:var(--sh-md)}
+    .menu__item:hover::before{opacity:1}
+    .menu__item:active{transform:scale(.97)}
+    .menu__icon{width:68px;height:68px;border-radius:50%;object-fit:contain;padding:10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);transition:transform var(--t-normal)}
+    .menu__icon--svg{display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .menu__icon--svg svg{width:32px;height:32px}
+    .menu__item:hover .menu__icon{transform:rotate(-8deg) scale(1.08)}
+    .menu__item:hover .menu__icon--svg{transform:scale(1.1)}
+
+    /* page entry animation */
+    @keyframes pageIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    .page-enter{animation:pageIn var(--t-slow) both}
+  </style>
+
+  <!-- styles.css carregado de forma não-bloqueante (preload → stylesheet no onload) -->
+  <link rel="preload" href="/assets/css/styles.css?v12" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/assets/css/styles.css?v12"></noscript>
+
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'none';
+    script-src  'self' 'unsafe-inline';
+    img-src     'self' data:;
+    style-src   'self' 'unsafe-inline';
+    font-src    'self';
+    connect-src 'self' https://servicebus2.caixa.gov.br https://api.lmania.com.br http://localhost:8000 http://localhost:8001 http://localhost:5500;
+    worker-src  'self';
+    manifest-src 'self';
+    child-src   'none';
+    upgrade-insecure-requests;
+  ">
+
+  <!-- Vendor scripts (deferred — não bloqueiam render) -->
+  <script src="/assets/js/sweetalert2.11.js" defer></script>
+  <script src="/assets/js/Chart.min.js"       defer></script>
+  <script src="/assets/js/script.js"          defer></script>
+
+  <!-- JSON-LD: WebSite + Organization (SEO estruturado) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://lmania.com.br/#website",
+        "url": "https://lmania.com.br",
+        "name": "LMania",
+        "description": "Ferramenta matemática gratuita para apostadores de loterias brasileiras. Análise estatística, fechamentos condicionais e conferência de resultados.",
+        "inLanguage": "pt-BR",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://lmania.com.br/blog?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://lmania.com.br/#organization",
+        "name": "LMania",
+        "url": "https://lmania.com.br",
+        "logo": "https://lmania.com.br/assets/logo.png",
+        "founder": {
+          "@type": "Person",
+          "name": "Rodrigo Faustino",
+          "email": "rodrigohipnose@gmail.com"
+        },
+        "description": "LMania é uma ferramenta educacional e matemática gratuita para apostadores de loterias brasileiras.",
+        "sameAs": []
+      }
+    ]
+  }
+  </script>
+
+  <!-- Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js');
+    }
+  </script>
+</head>
+<body>
+
+  <!-- ── App Header ────────────────────────────────────────────── -->
+  <header class="app-header">
+    <div style="display:flex;flex-direction:column;gap:2px;">
+      <h1>LMania</h1>
+      <span id="titulo"></span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <button id="buttonInstall" aria-label="Instalar aplicativo">⬇ Instalar</button>
+    </div>
+  </header>
+
+  <!-- ── SPA Root ───────────────────────────────────────────────── -->
+  <div id="app" role="main"></div>
+
+  <!-- ── SPA Bootstrap ─────────────────────────────────────────── -->
+  <script type="module" src="/assets/js/App.js?v2"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7864476706271450"
+     crossorigin="anonymous"></script>
+</body>
+</html>
